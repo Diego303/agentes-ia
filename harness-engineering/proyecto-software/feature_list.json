@@ -1,0 +1,12 @@
+{
+  "features": [
+    {
+      "id": "DEMO-001",
+      "title": "Feature de ejemplo: endpoint de health check",
+      "domain": "software",
+      "priority": 1,
+      "tags": [],
+      "status": "proposed"
+    }
+  ]
+}

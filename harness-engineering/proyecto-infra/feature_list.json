@@ -1,0 +1,15 @@
+{
+  "features": [
+    {
+      "id": "DEMO-INFRA-001",
+      "title": "VPC base con subredes públicas y privadas",
+      "domain": "infra",
+      "priority": 1,
+      "tags": [
+        "security-critical",
+        "iac"
+      ],
+      "status": "proposed"
+    }
+  ]
+}

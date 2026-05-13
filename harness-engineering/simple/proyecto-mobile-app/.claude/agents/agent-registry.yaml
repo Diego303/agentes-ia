@@ -1,0 +1,292 @@
+version: 1
+generated_at: '2026-05-13T19:19:12Z'
+bundle_dir: .claude
+agents:
+- name: explorer
+  domain: _base
+  role: orchestration
+  invocation: automatic
+  flow_phase: explore
+  flow_position: 1
+  skill_path: .claude/agents/explorer.md
+  description: Mapea el codebase relevante para una feature antes de proponer soluciones.
+    Usar cuando se inicia una feature en estado proposed y aún no existe context.md.
+  model: sonnet
+  tools:
+  - Read
+  - Grep
+  - Glob
+  triggers_on_tags: []
+  color: cyan
+  memory: project
+- name: designer
+  domain: _base
+  role: orchestration
+  invocation: automatic
+  flow_phase: spec_design
+  flow_position: 4
+  skill_path: .claude/agents/designer.md
+  description: Designer del flujo simple. Toma context.md y produce en un solo pase
+    TODOS los artefactos de spec/design/tasks (proposal.md, requirements.md, design.md,
+    tasks.md, acceptance.yaml, sources.md). Subsume proposer + spec-writer + designer
+    + task-planner del flujo complex.
+  model: opus
+  tools:
+  - Read
+  - Grep
+  - Glob
+  - Edit
+  - Write
+  - Bash
+  triggers_on_tags: []
+  color: purple
+  memory: project
+- name: api-designer
+  domain: software
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/api-designer.md
+  description: Diseña contratos de API (REST, GraphQL, RPC, eventos) y los anexa como
+    sección a design.md. Usar cuando proposal.md o requirements.md mencionan endpoints
+    o eventos.
+  model: sonnet
+  tools:
+  - Read
+  - Write
+  - Edit
+  - Grep
+  triggers_on_tags: []
+  color: blue
+  memory: project
+- name: builder
+  domain: _base
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/builder.md
+  description: Builder del flujo simple. Implementa la feature siguiendo tasks.md,
+    design.md y acceptance.yaml. Equivalente a implementer en complex.
+  model: sonnet
+  tools:
+  - Read
+  - Grep
+  - Glob
+  - Edit
+  - Write
+  - Bash
+  triggers_on_tags: []
+  color: green
+  memory: project
+- name: changelog-curator
+  domain: docs
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/changelog-curator.md
+  description: Mantiene CHANGELOG.md (Keep-a-Changelog) y anexa la entrada al archive.md.
+    Usar cuando Archiver terminó y la feature es user-facing.
+  model: haiku
+  tools:
+  - Read
+  - Write
+  - Edit
+  - Grep
+  triggers_on_tags: []
+  color: green
+  memory: project
+- name: doc-reviewer
+  domain: docs
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/doc-reviewer.md
+  description: Revisa precisión técnica, completitud y consistencia de docs nuevas
+    pre-GATE#2. Usar cuando el perfil tiene domain docs, en paralelo con otros revisores.
+  model: sonnet
+  tools:
+  - Read
+  - Grep
+  - Glob
+  triggers_on_tags: []
+  color: green
+  memory: project
+- name: example-curator
+  domain: docs
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/example-curator.md
+  description: Mantiene la carpeta de ejemplos del repo y anexa updates a archive.md.
+    Usar cuando Archiver terminó y la feature toca superficie pública.
+  model: haiku
+  tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Grep
+  triggers_on_tags: []
+  color: green
+  memory: project
+- name: glossary-keeper
+  domain: docs
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/glossary-keeper.md
+  description: Mantiene docs/glossary.md y anexa términos nuevos a archive.md. Usar
+    cuando Archiver terminó y la feature introdujo terminología nueva.
+  model: haiku
+  tools:
+  - Read
+  - Write
+  - Edit
+  - Grep
+  triggers_on_tags: []
+  color: green
+  memory: project
+- name: mobile-perf-auditor
+  domain: mobile
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/mobile-perf-auditor.md
+  description: 'Audita rendimiento de la app mobile: startup time, jank/frame rate,
+    memory footprint, battery, network usage. Reporta hotspots específicos con recomendaciones.
+    Se invoca on-demand antes de gate2 cuando los NFR de performance importan.'
+  model: sonnet
+  tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash
+  triggers_on_tags: []
+  color: teal
+  memory: project
+- name: mobile-platform-strategist
+  domain: mobile
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/mobile-platform-strategist.md
+  description: 'Decide entre native (iOS Swift / Android Kotlin) vs cross-platform
+    (React Native, Flutter, Capacitor, Kotlin Multiplatform): trade-offs por NFR,
+    organización del equipo, ecosistema. Se invoca on-demand cuando la feature exige
+    decisión de plataforma o ajuste estratégico.'
+  model: sonnet
+  tools:
+  - Read
+  - Grep
+  - Glob
+  - Edit
+  - Write
+  triggers_on_tags: []
+  color: teal
+  memory: project
+- name: mobile-release-manager
+  domain: mobile
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/mobile-release-manager.md
+  description: 'Gestiona el flujo de release a App Store y Google Play: beta channels
+    (TestFlight, internal track), staged rollout, force update strategy, version codes,
+    release notes. Se invoca on-demand antes de cada release que toca producción.'
+  model: sonnet
+  tools:
+  - Read
+  - Grep
+  - Glob
+  - Edit
+  - Write
+  triggers_on_tags: []
+  color: teal
+  memory: project
+- name: offline-sync-designer
+  domain: mobile
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/offline-sync-designer.md
+  description: 'Diseña estrategia offline-first: queue de mutations, conflict resolution
+    (LWW, OT, CRDT), sincronización con backend, tombstones, manejo de attachments.
+    Se invoca on-demand cuando la feature debe operar sin conectividad.'
+  model: sonnet
+  tools:
+  - Read
+  - Grep
+  - Glob
+  - Edit
+  - Write
+  triggers_on_tags: []
+  color: teal
+  memory: project
+- name: reviewer
+  domain: _base
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/reviewer.md
+  description: 'Reviewer del flujo simple. Subsume code-reviewer + verifier + archiver
+    del complex. Invocado DOS VECES: en fase ''review'' (code review) y en fase ''verify_archive''
+    (verify + archive). El orquestador indica qué fase mediante state.yaml.current_phase.'
+  model: sonnet
+  tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash
+  - Edit
+  - Write
+  triggers_on_tags: []
+  color: red
+  memory: project
+- name: technical-writer
+  domain: docs
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/technical-writer.md
+  description: Redacta API docs, guías y tutoriales en paralelo a Implementer. Usar
+    cuando el perfil tiene domain docs durante la implementación.
+  model: sonnet
+  tools:
+  - Read
+  - Write
+  - Edit
+  - Grep
+  triggers_on_tags: []
+  color: green
+  memory: project
+- name: test-engineer
+  domain: software
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/test-engineer.md
+  description: Define la estrategia de testing y la anexa como sección a design.md.
+    Usar cuando el perfil tiene domain software, post-Designer.
+  model: sonnet
+  tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Grep
+  triggers_on_tags: []
+  color: blue
+  memory: project

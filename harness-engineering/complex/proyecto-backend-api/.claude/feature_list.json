@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "features": [
+    {
+      "id": "API-001",
+      "title": "Endpoint de health check con métricas observables",
+      "domain": "software",
+      "priority": 1,
+      "tags": [],
+      "status": "proposed"
+    }
+  ]
+}

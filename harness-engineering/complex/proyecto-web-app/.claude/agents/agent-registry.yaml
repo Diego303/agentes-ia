@@ -1,0 +1,448 @@
+version: 1
+generated_at: '2026-05-13T19:19:42Z'
+bundle_dir: .claude
+agents:
+- name: explorer
+  domain: _base
+  role: orchestration
+  invocation: automatic
+  flow_phase: explore
+  flow_position: 1
+  skill_path: .claude/agents/explorer.md
+  description: Mapea el codebase relevante para una feature antes de proponer soluciones.
+    Usar cuando se inicia una feature en estado proposed y aún no existe context.md.
+  model: sonnet
+  tools:
+  - Read
+  - Grep
+  - Glob
+  triggers_on_tags: []
+  color: cyan
+  memory: project
+- name: proposer
+  domain: _base
+  role: orchestration
+  invocation: automatic
+  flow_phase: propose
+  flow_position: 2
+  skill_path: .claude/agents/proposer.md
+  description: Genera 2-3 alternativas con trade-offs a partir de la exploración.
+    Usar cuando context.md existe y aún no hay proposal.md (pre-GATE#1).
+  model: sonnet
+  tools:
+  - Read
+  - Write
+  - Edit
+  - Grep
+  triggers_on_tags: []
+  color: yellow
+  memory: project
+- name: designer
+  domain: _base
+  role: orchestration
+  invocation: automatic
+  flow_phase: spec_design
+  flow_position: 4
+  skill_path: .claude/agents/designer.md
+  description: Diseña la arquitectura técnica que cumple la spec. Usar cuando proposal.md
+    está aprobado en GATE#1, en paralelo con spec-writer.
+  model: opus
+  tools:
+  - Read
+  - Write
+  - Edit
+  - Grep
+  triggers_on_tags: []
+  color: purple
+  memory: project
+- name: spec-writer
+  domain: _base
+  role: orchestration
+  invocation: automatic
+  flow_phase: spec_design
+  flow_position: 4
+  skill_path: .claude/agents/spec-writer.md
+  description: Convierte una propuesta aprobada en una especificación detallada con
+    criterios de aceptación. Usar cuando exista proposal.md aprobado y no exista requirements.md.
+  model: opus
+  tools:
+  - Read
+  - Write
+  - Edit
+  - Grep
+  triggers_on_tags: []
+  color: blue
+  memory: project
+- name: task-planner
+  domain: _base
+  role: orchestration
+  invocation: automatic
+  flow_phase: tasks
+  flow_position: 5
+  skill_path: .claude/agents/task-planner.md
+  description: Descompone spec + design en tasks atómicas con acceptance criteria.
+    Usar cuando requirements.md y design.md existen.
+  model: sonnet
+  tools:
+  - Read
+  - Write
+  - Edit
+  - Grep
+  triggers_on_tags: []
+  color: orange
+  memory: project
+- name: implementer
+  domain: _base
+  role: orchestration
+  invocation: automatic
+  flow_phase: implement
+  flow_position: 6
+  skill_path: .claude/agents/implementer.md
+  description: Ejecuta una task atómica del task-plan modificando código. Usar cuando
+    tasks.md existe y no hay implementation.md.
+  model: sonnet
+  tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Grep
+  - Glob
+  triggers_on_tags: []
+  color: green
+  memory: project
+- name: code-reviewer
+  domain: software
+  role: orchestration
+  invocation: automatic
+  flow_phase: review
+  flow_position: 7
+  skill_path: .claude/agents/code-reviewer.md
+  description: Revisa el diff de Implementer pre-GATE#2 (calidad, deuda, performance,
+    dependencias). Usar cuando implementation.md existe y antes de GATE#2 en perfiles
+    con domain software.
+  model: sonnet
+  tools:
+  - Read
+  - Grep
+  - Glob
+  triggers_on_tags: []
+  color: red
+  memory: project
+- name: verifier
+  domain: _base
+  role: orchestration
+  invocation: automatic
+  flow_phase: verify
+  flow_position: 9
+  skill_path: .claude/agents/verifier.md
+  description: Ejecuta verify.sh y reporta pass/fail con evidencia. Usar cuando GATE#2
+    está aprobado y antes de archiver.
+  model: sonnet
+  tools:
+  - Read
+  - Bash
+  - Grep
+  triggers_on_tags: []
+  color: red
+  memory: project
+- name: archiver
+  domain: _base
+  role: orchestration
+  invocation: automatic
+  flow_phase: archive
+  flow_position: 10
+  skill_path: .claude/agents/archiver.md
+  description: 'Cierra una feature: mueve a archivo, actualiza feature_list.json y
+    compone Summary. Usar cuando Verifier OK.'
+  model: sonnet
+  tools:
+  - Read
+  - Write
+  - Edit
+  - Grep
+  triggers_on_tags: []
+  color: gray
+  memory: project
+- name: api-designer
+  domain: software
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/api-designer.md
+  description: Diseña contratos de API (REST, GraphQL, RPC, eventos) y los anexa como
+    sección a design.md. Usar cuando proposal.md o requirements.md mencionan endpoints
+    o eventos.
+  model: sonnet
+  tools:
+  - Read
+  - Write
+  - Edit
+  - Grep
+  triggers_on_tags: []
+  color: blue
+  memory: project
+- name: brainstormer
+  domain: ideation
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/brainstormer.md
+  description: Genera ≥5 direcciones distintas para un problema antes de converger.
+    Usar cuando la feature es muy abierta o experimental (pre-flow opcional).
+  model: sonnet
+  tools:
+  - Read
+  - Write
+  - Edit
+  - Grep
+  - WebFetch
+  - WebSearch
+  triggers_on_tags: []
+  color: yellow
+  memory: project
+- name: changelog-curator
+  domain: docs
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/changelog-curator.md
+  description: Mantiene CHANGELOG.md (Keep-a-Changelog) y anexa la entrada al archive.md.
+    Usar cuando Archiver terminó y la feature es user-facing.
+  model: haiku
+  tools:
+  - Read
+  - Write
+  - Edit
+  - Grep
+  triggers_on_tags: []
+  color: green
+  memory: project
+- name: compliance-officer
+  domain: cross_cutting
+  role: cross-cutting
+  invocation: cross-cutting
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/compliance-officer.md
+  description: Revisa cumplimiento legal/regulatorio (GDPR, CCPA, retención, licencias)
+    en paralelo a GATE#2. Usar cuando el perfil declara compliance-officer en cross_cutting.
+  model: sonnet
+  tools:
+  - Read
+  - Grep
+  - Glob
+  triggers_on_tags:
+  - compliance
+  - gdpr
+  - audit
+  color: red
+  memory: project
+- name: critic
+  domain: ideation
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/critic.md
+  description: Modo convergente del Brainstormer — descarta direcciones inviables
+    y recomienda top-2 a Proposer. Usar cuando Brainstormer ha generado direcciones
+    (pre-flow).
+  model: sonnet
+  tools:
+  - Read
+  - Grep
+  - Glob
+  triggers_on_tags: []
+  color: yellow
+  memory: project
+- name: decision-recorder
+  domain: ideation
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/decision-recorder.md
+  description: Captura decisiones arquitectónicas como ADRs y anexa la referencia
+    a archive.md. Usar cuando Archiver terminó y hubo decisión no trivial entre alternativas.
+  model: sonnet
+  tools:
+  - Read
+  - Write
+  - Edit
+  - Grep
+  triggers_on_tags: []
+  color: yellow
+  memory: project
+- name: doc-reviewer
+  domain: docs
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/doc-reviewer.md
+  description: Revisa precisión técnica, completitud y consistencia de docs nuevas
+    pre-GATE#2. Usar cuando el perfil tiene domain docs, en paralelo con otros revisores.
+  model: sonnet
+  tools:
+  - Read
+  - Grep
+  - Glob
+  triggers_on_tags: []
+  color: green
+  memory: project
+- name: example-curator
+  domain: docs
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/example-curator.md
+  description: Mantiene la carpeta de ejemplos del repo y anexa updates a archive.md.
+    Usar cuando Archiver terminó y la feature toca superficie pública.
+  model: haiku
+  tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Grep
+  triggers_on_tags: []
+  color: green
+  memory: project
+- name: glossary-keeper
+  domain: docs
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/glossary-keeper.md
+  description: Mantiene docs/glossary.md y anexa términos nuevos a archive.md. Usar
+    cuando Archiver terminó y la feature introdujo terminología nueva.
+  model: haiku
+  tools:
+  - Read
+  - Write
+  - Edit
+  - Grep
+  triggers_on_tags: []
+  color: green
+  memory: project
+- name: hypothesis-formulator
+  domain: ideation
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/hypothesis-formulator.md
+  description: Formula hipótesis falsables con métrica, ventana y umbrales de éxito/aborto.
+    Usar cuando la feature es experimental (post-Brainstormer y Prior-Art).
+  model: opus
+  tools:
+  - Read
+  - Write
+  - Edit
+  - Grep
+  triggers_on_tags: []
+  color: yellow
+  memory: project
+- name: prior-art-researcher
+  domain: ideation
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/prior-art-researcher.md
+  description: Busca soluciones existentes (OSS, papers, RFCs) para evitar reinventar
+    ruedas. Usar cuando la feature puede tener precedentes (pre-flow tras Brainstormer).
+  model: sonnet
+  tools:
+  - Read
+  - Grep
+  - Glob
+  - WebFetch
+  - WebSearch
+  triggers_on_tags: []
+  color: yellow
+  memory: project
+- name: research-summarizer
+  domain: ideation
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/research-summarizer.md
+  description: Destila papers, talks y docs externos entregados por el humano en resúmenes
+    accionables. Usar cuando hay fuentes externas a sintetizar (pre-flow).
+  model: sonnet
+  tools:
+  - Read
+  - Write
+  - Edit
+  - Grep
+  - WebFetch
+  - WebSearch
+  triggers_on_tags: []
+  color: yellow
+  memory: project
+- name: security-auditor
+  domain: cross_cutting
+  role: cross-cutting
+  invocation: cross-cutting
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/security-auditor.md
+  description: Audita superficie de ataque, secretos, deps nuevas y operaciones privilegiadas
+    pre-GATE#2. Usar cuando el perfil declara security-auditor en cross_cutting.
+  model: opus
+  tools:
+  - Read
+  - Grep
+  - Glob
+  - Bash
+  triggers_on_tags:
+  - security-critical
+  - auth
+  - crypto
+  color: red
+  memory: project
+- name: technical-writer
+  domain: docs
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/technical-writer.md
+  description: Redacta API docs, guías y tutoriales en paralelo a Implementer. Usar
+    cuando el perfil tiene domain docs durante la implementación.
+  model: sonnet
+  tools:
+  - Read
+  - Write
+  - Edit
+  - Grep
+  triggers_on_tags: []
+  color: green
+  memory: project
+- name: test-engineer
+  domain: software
+  role: specialist
+  invocation: on-demand
+  flow_phase: null
+  flow_position: null
+  skill_path: .claude/agents/test-engineer.md
+  description: Define la estrategia de testing y la anexa como sección a design.md.
+    Usar cuando el perfil tiene domain software, post-Designer.
+  model: sonnet
+  tools:
+  - Read
+  - Write
+  - Edit
+  - Bash
+  - Grep
+  triggers_on_tags: []
+  color: blue
+  memory: project

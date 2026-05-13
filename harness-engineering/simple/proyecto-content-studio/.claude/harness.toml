@@ -1,0 +1,21 @@
+[project]
+name = "proyecto-content-studio"
+profile = "content-studio"
+client = "claude-code"
+bundle_dir = ".claude"
+flow_type = "simple"
+harness_cli_version = "0.4.0"
+created_at = "2026-05-13T19:18:07+00:00"
+
+[orchestration]
+# manual: tras cada agente, espera confirmación humana antes de invocar el siguiente.
+# auto: el orquestador encadena agentes automáticamente, parando solo en gates humanos.
+mode = "manual"
+
+[orchestration.preview]
+# Cuando mode=auto, antes de invocar el siguiente agente muestra preview.
+show = true
+wait_seconds = 5
+
+[domains]
+active = ["content", "docs", "ideation"]

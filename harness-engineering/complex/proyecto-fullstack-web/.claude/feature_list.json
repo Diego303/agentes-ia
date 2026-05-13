@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "features": [
+    {
+      "id": "WEB-001",
+      "title": "Página de landing con SEO y A11y AA",
+      "domain": "software",
+      "priority": 1,
+      "tags": [
+        "seo"
+      ],
+      "status": "proposed"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "features": [
+    {
+      "id": "DEMO-POST-001",
+      "title": "Post de blog: introducción al harness engineering",
+      "domain": "content",
+      "priority": 1,
+      "tags": [
+        "seo"
+      ],
+      "status": "proposed"
+    }
+  ]
+}

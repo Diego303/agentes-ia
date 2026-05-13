@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "features": [
+    {
+      "id": "PIPE-001",
+      "title": "Pipeline ETL diario con validaciones de calidad",
+      "domain": "software",
+      "priority": 1,
+      "tags": [],
+      "status": "proposed"
+    }
+  ]
+}

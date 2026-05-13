@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "features": [
+    {
+      "id": "MOB-001",
+      "title": "Pantalla de inicio con sync offline",
+      "domain": "software",
+      "priority": 1,
+      "tags": [],
+      "status": "proposed"
+    }
+  ]
+}

@@ -143,11 +143,20 @@ Si la situación es psicológica (motivación caída) y no operativa, sí añade
 
 ## Skills que invoca
 
-- `amrap-tree`
-- `sleep-debt-protocol`
-- `plan-abc-knee`
-- `test-day-protocol`
-- `vacation-bw-routine`
-- `recon-protocols`
-- `rpe-scale`
-- `micro-celebraciones` (cuando aplique reconocer un win)
+**Primarios (consulta operativa típica)**:
+- `troubleshooting-catalog` · primer lookup ante cualquier "¿qué hago si X?"
+- `amrap-tree` · resultado AMRAP fuera de target
+- `sleep-debt-protocol` · días con sueño deficitario
+- `plan-abc-knee` · dolor/molestia rodilla durante calentamiento
+- `rpe-scale` · clarificación de cómo identificar RPE
+- `pre-session-mental-prep` · "¿qué hago antes de empezar?"
+
+**Eventos especiales**:
+- `test-day-protocol` · día del test
+- `vacation-bw-routine` · durante disrupción
+- `recon-protocols` · vuelta de disrupción
+- `disruption-adaptation-framework` · planificación de disrupción futura
+
+**Apoyo motivacional**:
+- `micro-celebraciones` · cuando aplique reconocer un win
+- `coaching-principles` · justificar el "por qué" del plan ante dudas del usuario

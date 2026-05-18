@@ -136,12 +136,24 @@ CONTINGENCIAS · [Plan A/B/C rodilla, test fallido, hito tracking]
 
 ## Skills que invoca este agente
 
+**Filosofía (obligatorio)**:
+- `coaching-principles` · 10 principios rectores que JUSTIFICAN cada decisión del plan
+
+**Cálculos**:
 - `epley-formula` para cálculos 1RM
 - `bench-dual-column` si hay incertidumbre del 1RM bench
+- `calendar-arithmetic` para fechas, día-de-semana, conteo de sesiones
+
+**Estructura programática**:
 - `periodization-design` para estructura de bloques
 - `amrap-tree` para reglas de autorregulación
 - `plan-abc-knee` si hay molestia rodilla
-- `sleep-debt-protocol` para restricciones sueño
+
+**Eventos especiales**:
 - `test-day-protocol` para diseño del test final
+- `disruption-adaptation-framework` SI el usuario reporta disrupciones futuras conocidas (vacaciones, cirugía, etc.)
+
+**Infraestructura paralela**:
+- `sleep-debt-protocol` para restricciones sueño
 - `cardio-z2` y `recovery-smr` para infraestructura recuperación
 - `nutrition-complete` si el usuario quiere incluir guía nutricional

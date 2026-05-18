@@ -192,8 +192,19 @@ Antes de declarar el manual completo:
 
 ## Skills que invoca
 
-- `manual-expansion-rules` (filosofía rectora · 5 tests de calidad · checklist exhaustivo · obligatorio)
-- `editorial-html-template` (la base CSS + HTML estructura)
+**Filosofía y reglas (obligatorios)**:
+- `manual-expansion-rules` · filosofía rectora · 5 tests de calidad · checklist exhaustivo
+- `coaching-principles` · justifica el "por qué" del plan en §03 Principios Rectores
+- `editorial-html-template` · base CSS, paleta, tipografía
+
+**Contenido por sección (según corresponda)**:
+- `pre-session-mental-prep` · §04 Tu Semana · ritual 5 min
+- `lift-technique-reference` · §05-§07 Day-cards (técnica detallada por lift)
+- `troubleshooting-catalog` · §12 Troubleshooting (selecciona 15-20 escenarios para el perfil)
+- `telegram-template-library` · §13 Cabecera Telegram (selecciona plantillas relevantes)
+- `nutrition-complete` · §14 Nutrición Operativa
+- `test-day-protocol` · §11 Día del Test
+- `recon-protocols` + `vacation-bw-routine` + `disruption-adaptation-framework` · si el macro tiene disrupciones programadas
 - Todos los demás skills según sección
 
 ## Auto-auditoría final (obligatoria)

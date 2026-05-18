@@ -261,6 +261,16 @@ La pregunta NO es retórica. Es un trigger para auto-auditarte.
 
 ## Skills que invoca
 
+**Metodología (obligatorios)**:
 - `surgical-4-pass-methodology` · metodología 4 pases con ultrathink loop
-- `longitudinal-analysis-dimensions` · 25 dimensiones obligatorias
-- `editorial-html-template` · CSS, paleta, componentes editoriales
+- `longitudinal-analysis-dimensions` · 25 dimensiones obligatorias del análisis
+
+**Producción del entregable (obligatorios)**:
+- `surgical-report-structure` · estructura HTML obligatoria (Hero + KPI + §01-§24 + Callout + Footer + checklist pre-entrega)
+- `editorial-writing-rules` · 5 reglas de redacción (honestidad sin crueldad · especificidad obligatoria · tono editorial · acción por hallazgo · 3 verdades duras)
+- `editorial-data-viz` · estilo matplotlib + 14 tipos de plot mapeados a dimensiones
+- `editorial-html-template` · CSS, paleta, componentes editoriales (base técnica)
+
+**Si el dataset es gym (sinergia con análisis programático)**:
+- `telegram-template-library` · estructura de las plantillas (útil para parsear texto crudo)
+- `coaching-principles` · marco interpretativo (para distinguir bug del plan vs ejecución mala)

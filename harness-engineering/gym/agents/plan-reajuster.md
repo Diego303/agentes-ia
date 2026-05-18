@@ -157,8 +157,16 @@ Si el usuario tiene un manual operativo HTML:
 
 ## Skills que invoca
 
-- `calendar-arithmetic` para contar sesiones y fechas
-- `recon-protocols` para diseñar RECON-1 y RECON-2
-- `vacation-bw-routine` para rutina sin equipo
-- `amrap-tree` para autorregulación post-reajuste
-- `plan-audit-checklist` para verificar consistencia post-edit
+**Meta-protocolo (obligatorio)**:
+- `disruption-adaptation-framework` · 5 pasos para reorganizar el macro (clasificar · absorber vs desplazar · reorganizar · insertar RECON · recomputar test)
+
+**Protocolos concretos**:
+- `calendar-arithmetic` · contar sesiones y fechas
+- `recon-protocols` · diseñar RECON-1 y RECON-2 específicos
+- `vacation-bw-routine` · rutina sin equipo
+- `amrap-tree` · autorregulación post-reajuste
+- `telegram-template-library` · plantillas pre/durante/post disrupción
+
+**Validación**:
+- `plan-audit-checklist` · verificar consistencia post-edit
+- `surgical-4-pass-methodology` · validar el reajuste completo en ultrathink loop

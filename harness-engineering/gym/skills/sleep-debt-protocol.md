@@ -5,6 +5,8 @@ description: Invoke when the user reports poor sleep (1 night, 2-3 nights, 4+ ni
 
 # Sleep Debt Protocol · qué hacer cuando no has dormido
 
+> **Nota · skill general aplicable a cualquier humano.** La asunción "6 h consolidadas" es el **mínimo del perfil de referencia**. Adapta a tu mínimo realista (puede ser 7 h si vives sin restricciones · 5 h si tienes recién nacido). Los umbrales "< 5 h aislada", "2-3 noches < 5 h", "4+ noches ≤ 5 h" son **relativos a tu baseline** — si tu baseline es 7,5 h, tu umbral crítico es < 6,5 h. Las acciones programáticas (mantener / sesión técnica / pausa) son invariantes.
+
 ## Asunción base
 
 El plan asume **6 h consolidadas** como mínimo recuperable. Si cae por debajo, el plan se adapta antes de la siguiente sesión.
@@ -16,7 +18,7 @@ Lo importante: distinguir entre **1 noche aislada** (gestionable) y **deuda acum
 | Situación | Acción HOY | Volumen | Intensidad | RPE max | AMRAP |
 |---|---|---|---|---|---|
 | 1 noche < 5 h aislada | Mantén sesión | -1 serie en compuesto | -10 % | 7 | Sí pero peso reducido |
-| 2-3 noches < 5 h en 7 días | 1 sesión "técnica" esa semana (la elige el usuario) | 50 % vol en esa sesión técnica | -25 % en sesión técnica | 6-7 | Off en sesión técnica |
+| 2-3 noches < 5 h en 7 días | 1 sesión "técnica" esa semana (aplica `[[deload-by-session]]`) | 50 % vol en esa sesión técnica | -25 % en sesión técnica | 6-7 | Off en sesión técnica |
 | 4+ noches ≤ 5 h en 7 días (DEUDA REAL) | **El plan se pausa toda la semana** | -20 % toda la semana | -10 % | 7 | **OFF toda la semana** |
 | Deuda persiste 2 sem seguidas | Deload completo extra 1 sem | 50 % vol | -25 % | 6-7 | Off |
 

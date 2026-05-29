@@ -70,11 +70,14 @@ Aplica skill `recovery-smr`. Define:
 
 ### 6. Ritual mental pre-sesión
 
-- **5 min antes de salir de casa**: repetir los 4 PRs en voz alta, mirar el peso del día, visualizar AMRAP
-- **Camino al gym**: cero scroll de redes, música de lista de entreno
-- **5 min en el gym antes del primer set**: pegar cabecera Telegram, calentamiento sin distracciones, "interruptor mental" en primer warm-up serio
-- **Si llegas al gym y no apetece**: regla de los 10 minutos (haces calentamiento + primer set, decides después si sigues)
-- **Si tras primer set aún no apetece**: te vas (1 sesión perdida ≠ fracaso)
+Aplica skill `[[pre-session-mental-prep]]`. Resumen:
+- Min 0-3 · llegada al gym + checklist físico + cabecera Telegram
+- Min 3-4 · mental rehearsal del lift principal
+- Min 4-5 · activación física específica
+- Regla "10 minutos" para días con baja energía
+- Contingencias para sensación <5/10
+
+Ver el skill completo para detalle paso a paso, contingencias, y errores típicos.
 
 ### 7. Adherencia psicológica · micro-wins
 
@@ -107,9 +110,16 @@ Documento de "Infraestructura de Recuperación" con:
 
 ## Skills que invoca
 
-- `sleep-debt-protocol`
-- `nutrition-complete`
-- `cardio-z2`
-- `recovery-smr`
-- `micro-celebraciones`
-- `telegram-tracking`
+**Recuperación principal**:
+- `[[sleep-debt-protocol]]`
+- `[[daily-morning-check]]` · capa 5 delega aquí
+- `[[nutrition-complete]]`
+- `[[cardio-z2]]`
+- `[[recovery-smr]]` · post-sesión
+- `[[mobility-prehab-by-joint]]` · pre-sesión · complementario a SMR
+
+**Ritual + tracking**:
+- `[[pre-session-mental-prep]]` · capa 6 delega aquí
+- `[[micro-celebraciones]]`
+- `[[telegram-tracking]]`
+- `[[body-composition-tracking]]` · capa nueva tracking corporal

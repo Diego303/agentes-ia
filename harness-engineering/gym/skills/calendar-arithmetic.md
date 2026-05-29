@@ -88,6 +88,29 @@ macro3_inicio = macro2_fin + timedelta(days=1 + buffer_dias)  # Mon 8 mar 2027
 macro3_fin = macro3_inicio + timedelta(days=118)  # Sun 4 jul 2027
 ```
 
+## Caso general · cualquier fecha de inicio
+
+Sustituye `date(2026, 5, 18)` por tu fecha de inicio real:
+
+```python
+from datetime import date, timedelta
+
+INICIO_MACRO = date(2026, 5, 18)     # tu lunes de inicio (cambia a tu fecha)
+SEMANAS_MACRO = 17                   # tu duración (cambia según tu plan)
+
+fin_macro = INICIO_MACRO + timedelta(days=SEMANAS_MACRO * 7 - 1)
+test_fecha = INICIO_MACRO + timedelta(days=(SEMANAS_MACRO - 1) * 7)
+deload_post = test_fecha + timedelta(days=7)
+macro2_inicio = deload_post + timedelta(days=7)
+
+print(f"Inicio: {INICIO_MACRO}")
+print(f"Test: {test_fecha}")
+print(f"Fin sem deload post: {deload_post}")
+print(f"Macro 2 inicio: {macro2_inicio}")
+```
+
+Las fechas concretas del perfil de referencia (18 may 2026 → 1 nov 2026 reajustado) son **ejemplo**, no plantilla. Cualquier humano que diseñe un macro puede sustituir su `INICIO_MACRO` y `SEMANAS_MACRO` para obtener todas las fechas clave.
+
 ## Verificación cruzada · checklist de fechas
 
 Para cualquier plan, verifica:

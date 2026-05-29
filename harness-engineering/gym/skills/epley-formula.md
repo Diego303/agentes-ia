@@ -34,7 +34,7 @@ description: Invoke when computing 1RM from a rep max set, recalibrating 1RM aft
 |---|---|---|---|---|
 | 65 kg | 7 (RPE 10) | 65 × (1 + 7/30) | 80,17 | **80 kg** |
 | 72,5 kg | 8 (AMRAP +2) | 72,5 × (1 + 8/30) | 91,83 | **92,5 kg** |
-| 67,5 kg | 8 (AMRAP +2) | 67,5 × (1 + 8/30) | 85,5 | **85,5 kg** |
+| 67,5 kg | 8 (AMRAP +2) | 67,5 × (1 + 8/30) | 85,5 | **85 kg** (empate → abajo) |
 | 77,5 kg | 10 (AMRAP +3) | 77,5 × (1 + 10/30) | 103,33 | **102,5 kg** |
 | 75 kg | 5 (RPE 9) | 75 × (1 + 5/30) | 87,5 | **87,5 kg** |
 | 70 kg | 4 (RPE 9) | 70 × (1 + 4/30) | 79,33 | **80 kg** |
@@ -83,13 +83,17 @@ Aplicas el ratio a TODA la columna del bloque siguiente, redondeas a 2,5 kg, y t
 ```python
 def epley(peso, reps):
     """Devuelve 1RM redondeado a 2,5 kg más cercano."""
-    rm = peso * (1 + reps/30)
+    rm = peso * (1 + reps / 30)
     return round(rm / 2.5) * 2.5
 
-# Tests
-assert epley(65, 7) == 80.0
-assert epley(72.5, 8) == 91.83 ... no, 92.5  # round 91.83 → 92.5
-print(epley(67.5, 8))  # 85.5
+# Tests basados en la tabla de ejemplos numéricos arriba
+assert epley(65, 7) == 80.0       # 1RM bruto 80,17
+assert epley(72.5, 8) == 92.5     # 1RM bruto 91,83
+assert epley(67.5, 8) == 85.0     # 1RM bruto 85,50 · empate exacto → abajo
+assert epley(77.5, 10) == 102.5   # 1RM bruto 103,33
+assert epley(75, 5) == 87.5       # 1RM bruto 87,50
+assert epley(70, 4) == 80.0       # 1RM bruto 79,33 (ver §validez antes de usar)
+print("Tests OK")
 ```
 
 ## Errores típicos a evitar

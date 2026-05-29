@@ -13,11 +13,13 @@ El AMRAP final del lift principal es tu termómetro semanal. Te dice si el peso 
 
 | Resultado vs target | Interpretación | Acción |
 |---|---|---|
-| **+3 o más sobre target** | Tu 1RM real era mayor del estimado | Recalibra 1RM al alza con Epley · sube los % +5 % o salta a la siguiente semana del plan |
+| **+3 o más sobre target** | Tu 1RM real era mayor del estimado | Recalibra 1RM al alza con Epley (ajusta -3% si AMRAP ≥12 reps · ver Caso 1) · sube los % 3-5 % del bloque siguiente |
 | **+1 a +2 sobre target** | Zona ideal · cargas calibradas | Sigue plan tal cual · próxima semana avanza normalmente |
 | **En target exacto** | Estímulo correcto | Sigue plan tal cual |
 | **-1 del target** | Día algo peor o cargas algo justas · aún manejable | Repite la semana sin avanzar |
 | **-2 o peor** | Cargas demasiado altas para tu estado real | Baja 5 % los pesos y repite · si falla otra vez: deload extra 1 sem |
+
+> **Nota sobre validez de Epley en AMRAPs altos**: la fórmula es fiable en el rango 4-10 reps. Para 11-12 reps, aplica -3% al cálculo bruto. Para ≥13 reps, NO calcules 1RM — sube directamente el peso 5-7% y vuelve a medir en el rango fiable. Esta regla es coherente con `[[epley-formula]]` §validez.
 
 ## Excepción crítica · sem 4 y sem 9 SIEMPRE recalibras
 
@@ -34,11 +36,15 @@ Aunque el AMRAP esté solo en target (no +1, +2 o +3 sobre):
 
 ```
 Resultado: +3
-Acción: recalibras al alza
-Cálculo: 1RM nuevo = 65 × (1 + 12/30) = 91 kg
-Tu 1RM real era 91 kg, no 85
-Acción operativa: saltas a sem 2 directamente o subes +5 % todos los pesos
+Acción: recalibras al alza (con cautela · 12 reps está en el borde superior del rango fiable de Epley)
+Cálculo Epley bruto: 65 × (1 + 12/30) = 91 kg
+Ajuste por sobreestimación: -3% → 1RM operativo ≈ 88 kg
+Tu 1RM real era ~88 kg, no 85
+Acción operativa: subes +3-5 % todos los pesos del bloque (NO saltas a sem 2 · es prematuro)
+Confirmación: el AMRAP de sem 2 con pesos nuevos te dirá si 88 era acertado
 ```
+
+**Importante** · si tu AMRAP da 13+ reps, **no apliques Epley al valor literal**. Sube peso 5-7% para la siguiente sesión y mide AMRAP de nuevo en el rango fiable 4-10 reps.
 
 ### Caso 2 · Sem 4 bench, target ≥6, haces 7
 
@@ -67,13 +73,15 @@ Sem 9 (la siguiente) repite el bloque de sem 8 con -5 % de carga
 Si vuelve a fallar: deload extra 1 sem antes de bloque pico
 ```
 
-### Caso 5 · Sem 13 bench (pico), target ≥3, fallas a 2
+### Caso 5 · Sem 13 bench (en BLOQUE PICO), target ≥3, fallas a 2
+
+> **Definición de "bloque pico"**: las 4 últimas semanas pre-test (sem 11-14 en macro de 17 sem). En esta zona el árbol AMRAP tiene EXCEPCIÓN.
 
 ```
 Resultado: -1 en zona pico
 Acción: NO repites · aceptas y sigues a sem 14 (apertura)
-Razón: el pico es zona de testeo neural, no de acumulación
-Si llegas al test y no sale: aplica regla test fallido (PR previo se mantiene)
+Razón: el pico es zona de testeo neural, no de acumulación. Repetir sem 13 te quita 1 sem del taper.
+Si llegas al test y no sale: aplica regla test fallido (PR previo se mantiene · ver [[test-day-protocol]]).
 ```
 
 ## Combinación con escala RPE

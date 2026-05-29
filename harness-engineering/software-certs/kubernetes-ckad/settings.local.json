@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:kubernetes.io)",
+      "WebFetch(domain:helm.sh)",
+      "WebFetch(domain:kustomize.io)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:cncf.io)",
+      "WebFetch(domain:training.linuxfoundation.org)",
+      "WebFetch(domain:docs.docker.com)"
+    ]
+  }
+}

@@ -5,6 +5,8 @@ description: Invoke when designing or applying a knee-contingency tree for squat
 
 # Plan A/B/C Rodilla · árbol de contingencia para sentadilla
 
+> **Nota · skill general aplicable a cualquier lifter con molestia rodilla.** El protocolo A/B/C es invariante. Los pesos de la tabla ejemplo (línea 76+) son del perfil de referencia (sentadilla PR 110 kg / target 125 kg) — adapta a tu 1RM real antes de aplicar. La regla "ante la duda, Plan B" y los criterios de prehab no cambian.
+
 ## Concepto
 
 Cero "HOY NOOO". Si la rodilla no permite Plan A, hay Plan B. Si no Plan B, Plan C. La sesión de pierna NUNCA se salta — se modifica.

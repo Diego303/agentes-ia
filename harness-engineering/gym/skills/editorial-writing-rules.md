@@ -5,6 +5,8 @@ description: Invoke when writing any editorial technical document (longitudinal 
 
 # Editorial Writing Rules · 5 reglas de escritura editorial
 
+> **Nota · skill 100% general aplicable a cualquier informe técnico editorial.** Los ejemplos numéricos del cuerpo (e.g., "85 kg", "303 sesiones") son ilustrativos del caso de estudio · las reglas (honestidad sin crueldad, especificidad, etc.) son invariantes.
+
 ## Propósito
 
 Un documento técnico puede ser preciso y aburrido (paper académico mediocre), preciso y panfletario (charla TED genérica), o preciso y editorial (revista técnica buena). El objetivo de este skill es producir el tercer tipo.

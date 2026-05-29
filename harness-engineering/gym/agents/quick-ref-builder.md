@@ -154,8 +154,17 @@ Target: 700-1000 líneas · 40-55 KB.
 
 ## Skills que invoca
 
-- `mobile-quick-template` (base CSS + HTML)
-- Resto de skills para contenido (compactado)
+**Base**:
+- `[[mobile-quick-template]]` (base CSS + HTML)
+
+**Contenido cheat sheet**:
+- `[[bracing-valsalva]]` · notas inline en day-cards heavy
+- `[[support-gear-protocol]]` · cheat box "cuándo usar gear"
+- `[[daily-morning-check]]` · cheat box "60s al despertar"
+- `[[warmup-calculator]]` · cheat box tabla compacta
+- `[[deload-by-session]]` · cheat box "qué hacer si no te apetece"
+
+**Resto de skills para contenido** (compactado): según día-cards del macro
 
 ## Output
 

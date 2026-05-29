@@ -116,7 +116,7 @@ Total: 195-265 g si haces las 6 tomas · 165-215 g si saltas media mañana.
 - Grasas: medio-alto (80-95 g) · más saciedad, más absorción vitaminas
 - Proteína igual que día gym (no bajes)
 - Hidratación igual
-- Cafeína cutoff 11 h estricto (sin entreno tarde)
+- Cafeína cutoff: **12 h antes de la hora habitual de dormir** (regla universal). Para hora de dormir 23h → último café 11:00. Para hora de dormir 0h → último café 12:00. Coherente con día gym y día descanso.
 
 ## 6. Suplementación · SOLO lo que funciona
 
@@ -124,7 +124,7 @@ Total: 195-265 g si haces las 6 tomas · 165-215 g si saltas media mañana.
 - **Creatina monohidrato 5 g/día** · único con evidencia robusta · misma hora cada día · año redondo, no ciclos
 - **Vitamina D3 2.000 UI/día** si poco sol invernal · puedes parar en verano
 - **Magnesio glicinato 200-400 mg** 30-45 min antes de dormir
-- **Cafeína 3-6 mg/kg pre-entreno** · cutoff 12 h pre-sueño
+- **Cafeína pre-entreno: dosis estándar = 3 mg/kg corporal** (≈240 mg para 80 kg · ≈195 mg para 65 kg · ≈285 mg para 95 kg). El rango 3-6 mg/kg es solo el techo individual permitido — la dosis diaria sostenible es ~3 mg/kg. Dosis aguda 6 mg/kg solo para test (ver `[[test-day-protocol]]`). Cutoff: 12 h antes de la hora habitual de dormir.
 - **Whey protein** si no llegas a 160-200 g proteína vía alimentos · NO es esencial si llegas vía comida
 
 ❌ **NO necesitas**:
@@ -141,8 +141,11 @@ Total: 195-265 g si haces las 6 tomas · 165-215 g si saltas media mañana.
 
 ### Dosis
 
-- **3-6 mg/kg** (perfil de referencia ~80 kg → 240-480 mg)
-- Empezar extremo bajo (240 mg) y subir solo si insuficiente
+- **Estándar diaria**: 3 mg/kg corporal · **NO 3-6**. El rango 3-6 es el techo individual permitido para casos puntuales, no la dosis recomendada.
+- **Ejemplo perfil de referencia 80 kg**: 240 mg pre-entreno.
+- **Para tu perfil**: peso_corporal_kg × 3 = dosis_estándar_mg.
+- **Empezar más bajo si eres sensible** (e.g., 2 mg/kg = ~160 mg para 80 kg) y subir solo si insuficiente.
+- **Re-sensibilización pre-test**: ver `[[test-day-protocol]]` (doble dosis = 6 mg/kg).
 
 ### Traducción a unidades reales (porque compras café, no mg)
 
@@ -154,14 +157,14 @@ Total: 195-265 g si haces las 6 tomas · 165-215 g si saltas media mañana.
 | 1 scoop pre-entreno comercial | ~150-300 mg (lee etiqueta) |
 | 1 cápsula cafeína anhidra | ~100-200 mg |
 
-**Para llegar a 240-320 mg**: 1 espresso doble + 1 Nespresso · o 1 cápsula 200 mg + 1 espresso · o 2 tazas café filtrado.
+**Para llegar a tu dosis estándar** (3 mg/kg · ejemplo 240 mg para 80 kg corporal): 1 espresso doble + 1 Nespresso · o 1 cápsula 200 mg + 1 espresso · o 2 tazas café filtrado. Ajusta a tu peso corporal real.
 
 ### Timing pre-entreno (LUN/VIE 20-21 h)
 
-- **19:00** (1 h pre-sesión): dosis principal 200-300 mg
-- **19:45** (justo antes salir gym): opcional 50-100 mg adicional si llegas apagado
-- **NO café después de 11:00** en día sin sesión nocturna
-- **Cutoff total**: 12 h pre-sueño
+- **1 h pre-sesión**: dosis estándar (3 mg/kg · ≈240 mg para 80 kg)
+- **Justo antes de salir al gym**: opcional dosis pequeña adicional (50-100 mg) si llegas apagado · NO doblar la dosis principal
+- **Día descanso**: misma regla de cutoff (12 h antes de dormir) · NO necesitas dosis pre-entreno
+- **Cutoff total**: 12 h antes de la hora habitual de dormir · aplica todos los días
 
 ### Si sesión a las 18 h por excepción
 
@@ -181,7 +184,7 @@ Ejemplo: 200 g pollo + 100 g arroz cocido + ensalada. Grasas bajas.
 
 ### 60 minutos antes
 
-- Cafeína (240-320 mg)
+- Cafeína · dosis estándar 3 mg/kg corporal (≈240 mg para 80 kg)
 - Snack si tienes hambre: plátano + cucharada miel + puñado frutos secos
 - 1 vaso de agua
 

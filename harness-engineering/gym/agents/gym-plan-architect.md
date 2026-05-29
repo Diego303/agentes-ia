@@ -137,23 +137,29 @@ CONTINGENCIAS · [Plan A/B/C rodilla, test fallido, hito tracking]
 ## Skills que invoca este agente
 
 **Filosofía (obligatorio)**:
-- `coaching-principles` · 10 principios rectores que JUSTIFICAN cada decisión del plan
+- `[[coaching-principles]]` · 10 principios rectores que JUSTIFICAN cada decisión del plan
 
 **Cálculos**:
-- `epley-formula` para cálculos 1RM
-- `bench-dual-column` si hay incertidumbre del 1RM bench
-- `calendar-arithmetic` para fechas, día-de-semana, conteo de sesiones
+- `[[epley-formula]]` para cálculos 1RM
+- `[[bench-dual-column]]` si hay incertidumbre del 1RM bench
+- `[[calendar-arithmetic]]` para fechas, día-de-semana, conteo de sesiones
+- `[[volume-landmarks-mev-mav-mrv]]` para diseñar volumen por bloque · ajustado al perfil
 
 **Estructura programática**:
-- `periodization-design` para estructura de bloques
-- `amrap-tree` para reglas de autorregulación
-- `plan-abc-knee` si hay molestia rodilla
+- `[[periodization-design]]` para estructura de bloques
+- `[[deload-week-design]]` para diseñar las sem deload
+- `[[peak-week-tapering]]` para diseñar sem 15 pre-test
+- `[[amrap-tree]]` para reglas de autorregulación
+- `[[plan-abc-knee]]` si hay molestia rodilla
+- `[[exercise-substitution-matrix]]` para diseñar Plan A/B/C de cada lift restringido
 
 **Eventos especiales**:
-- `test-day-protocol` para diseño del test final
-- `disruption-adaptation-framework` SI el usuario reporta disrupciones futuras conocidas (vacaciones, cirugía, etc.)
+- `[[test-day-protocol]]` para diseño del test final
+- `[[disruption-adaptation-framework]]` SI el usuario reporta disrupciones futuras conocidas
+- `[[multi-macro-roadmap]]` para planificar macros 2-3 al final del diseño
 
 **Infraestructura paralela**:
-- `sleep-debt-protocol` para restricciones sueño
-- `cardio-z2` y `recovery-smr` para infraestructura recuperación
-- `nutrition-complete` si el usuario quiere incluir guía nutricional
+- `[[sleep-debt-protocol]]` para restricciones sueño
+- `[[cardio-z2]]` y `[[recovery-smr]]` para infraestructura recuperación
+- `[[nutrition-complete]]` si el usuario quiere incluir guía nutricional
+- `[[support-gear-protocol]]` para definir qué gear se asume en el test

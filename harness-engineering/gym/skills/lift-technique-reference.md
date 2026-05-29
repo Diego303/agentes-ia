@@ -72,6 +72,65 @@ Si reconoces cualquiera: baja peso 2,5 kg y reintenta con pausa estricta.
 
 - Bajada 3 s · pausa 2 s · subida explosiva · 1 s arriba
 
+## Peso muerto convencional · variantes y técnica
+
+### Setup
+
+1. **Posición**: pies anchura caderas (no anchura hombros · más estrecho que squat)
+2. **Barra**: sobre mid-foot (mitad del pie · ni en talón ni en punta)
+3. **Bisagra cadera**: empuja cadera atrás, baja torso casi paralelo
+4. **Agarre**: prono · anchura un poco mayor que hombros · o mixto (1 prono + 1 supino) para pesos pesados
+5. **Bracing**: 360° + Valsalva (ver `[[bracing-valsalva]]`)
+6. **Tensión previa**: "saca el slack" tirando ligeramente antes de despegar (la barra se enrolla en sus discos)
+7. **Mirada**: neutro hacia adelante a 2-3 m
+
+### Tempo · 2-1-X-1
+
+- Bajada controlada 2 s (NO dejar caer)
+- 1 s en suelo (reset entre reps · NO touch-and-go pesado)
+- Subida explosiva (mantén espalda neutra)
+- 1 s arriba (hombros atrás, NO hiperextensión lumbar)
+
+### Ejecución
+
+1. **Despegue**: empuja suelo con piernas (NO tires con espalda). Cadera y hombros suben sincronizados.
+2. **Mid-range**: barra pegada al cuerpo (toca espinilla / muslo / rodilla en línea)
+3. **Lockout**: cadera arriba al final · NO hiperextiendas lumbar · NO sacudidas de hombro
+
+### Sticking point típico
+
+- **Despegue (suelo a rodilla)**: debilidad piernas · trabajar deficit deadlift o deadlift desde pins bajos
+- **Mid-range (rodilla a cadera)**: debilidad espalda alta · trabajar remos pesados + good morning
+- **Lockout**: debilidad glúteo · trabajar hip thrust + RDL
+
+### Variantes
+
+- **Sumo deadlift**: pies muy anchos, dedos abiertos · más demanda glúteo/aductores · menos demanda lumbar (apto para lumbares sensibles)
+- **Rumanian deadlift (RDL)**: NO toca suelo · bisagra cadera con flexión rodilla mínima · énfasis isquio
+- **Trap bar (hex bar)**: agarre neutro a los lados · más amigable con lumbar y rodilla simultáneamente (puente entre squat y deadlift)
+- **Deadlift desde pins**: barra desde altura rodilla · menos demanda despegue · útil para work pico
+
+### Errores a evitar
+
+- ❌ Subir cadera primero (lift se convierte en buen morning · espalda en riesgo)
+- ❌ Barra alejada del cuerpo (palanca peor · lumbar fatigada)
+- ❌ Hiperextender lumbar en lockout (riesgo lesión)
+- ❌ Cuello en hiperextensión mirando techo
+- ❌ Touch-and-go en sets pesados (pérdida bracing entre reps)
+- ❌ Agarre mixto siempre (riesgo desbalance bíceps · alternar lados o usar hook grip)
+
+### Cuándo usar cinturón
+
+- ≥80% del 1RM · acelera dominio neural (ver `[[support-gear-protocol]]`)
+- En sets de volumen (10+ reps) · opcional según fatiga lumbar
+- En RDL · raramente necesario
+
+### Frecuencia y volumen recomendados
+
+- Natural intermedio: 1× / semana es óptimo (más causa fatiga lumbar acumulada)
+- Volumen: 6-12 reps de trabajo total (incluyendo work + back-off)
+- Combinable con squat el mismo día SI volumen total controlado · mejor separados
+
 ## Sentadilla libre (Plan A)
 
 ### Setup en el rack
@@ -261,6 +320,9 @@ Balancear con lumbar para "subir" el peso (kipping). Si necesitas balancear, has
 | Bench heavy | 3-1-X-1 |
 | Bench pausa | 3-2-X-1 |
 | Sentadilla | 2-0-X-1 |
+| Peso muerto | 2-1-X-1 |
+| Trap bar deadlift | 2-1-X-1 |
+| Rumanian deadlift (RDL) | 3-1-X-1 |
 | Hip Thrust | 2-1-1-1 |
 | Prensa | 2-0-X-0 |
 

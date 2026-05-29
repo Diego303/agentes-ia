@@ -193,18 +193,29 @@ Antes de declarar el manual completo:
 ## Skills que invoca
 
 **Filosofía y reglas (obligatorios)**:
-- `manual-expansion-rules` · filosofía rectora · 5 tests de calidad · checklist exhaustivo
-- `coaching-principles` · justifica el "por qué" del plan en §03 Principios Rectores
-- `editorial-html-template` · base CSS, paleta, tipografía
+- `[[manual-expansion-rules]]` · filosofía rectora · 5 tests de calidad · checklist exhaustivo
+- `[[coaching-principles]]` · justifica el "por qué" del plan en §03 Principios Rectores
+- `[[editorial-html-template]]` · base CSS, paleta, tipografía
 
 **Contenido por sección (según corresponda)**:
-- `pre-session-mental-prep` · §04 Tu Semana · ritual 5 min
-- `lift-technique-reference` · §05-§07 Day-cards (técnica detallada por lift)
-- `troubleshooting-catalog` · §12 Troubleshooting (selecciona 15-20 escenarios para el perfil)
-- `telegram-template-library` · §13 Cabecera Telegram (selecciona plantillas relevantes)
-- `nutrition-complete` · §14 Nutrición Operativa
-- `test-day-protocol` · §11 Día del Test
-- `recon-protocols` + `vacation-bw-routine` + `disruption-adaptation-framework` · si el macro tiene disrupciones programadas
+- `[[pre-session-mental-prep]]` · §04 Tu Semana · ritual 5 min
+- `[[warmup-calculator]]` · §04 + §05/06/07 · tabla warm-up por intensidad
+- `[[mobility-prehab-by-joint]]` · §04 + §05/06/07 · mobility pre-sesión
+- `[[lift-technique-reference]]` · §05-§07 Day-cards (técnica compuestos)
+- `[[accessory-technique-reference]]` · §05-§07 Day-cards (técnica accesorios)
+- `[[bracing-valsalva]]` · §05/06/07 · bracing en lifts pesados
+- `[[support-gear-protocol]]` · §05/06/07 · gear por intensidad
+- `[[troubleshooting-catalog]]` · §12 Troubleshooting (15-20 escenarios)
+- `[[exercise-substitution-matrix]]` · §12 · matriz por articulación y equipo
+- `[[telegram-template-library]]` · §13 Cabecera Telegram (plantillas relevantes)
+- `[[nutrition-complete]]` · §14 Nutrición Operativa
+- `[[body-composition-tracking]]` · §13 + §14 · tracking corporal
+- `[[test-day-protocol]]` · §11 Día del Test
+- `[[peak-week-tapering]]` · §11 · taper sem 15 pre-test
+- `[[deload-week-design]]` · §08 · sem deload del macro
+- `[[recon-protocols]]` + `[[vacation-bw-routine]]` + `[[disruption-adaptation-framework]]` · disrupciones programadas
+- `[[multi-macro-roadmap]]` · §15 Post-test · macros siguientes
+- `[[mental-game-plateau]]` · §09 Autorregulación · gestión de pozos mentales
 - Todos los demás skills según sección
 
 ## Auto-auditoría final (obligatoria)

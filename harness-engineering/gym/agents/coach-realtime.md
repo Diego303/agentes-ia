@@ -144,19 +144,32 @@ Si la situación es psicológica (motivación caída) y no operativa, sí añade
 ## Skills que invoca
 
 **Primarios (consulta operativa típica)**:
-- `troubleshooting-catalog` · primer lookup ante cualquier "¿qué hago si X?"
-- `amrap-tree` · resultado AMRAP fuera de target
-- `sleep-debt-protocol` · días con sueño deficitario
-- `plan-abc-knee` · dolor/molestia rodilla durante calentamiento
-- `rpe-scale` · clarificación de cómo identificar RPE
-- `pre-session-mental-prep` · "¿qué hago antes de empezar?"
+- `[[troubleshooting-catalog]]` · primer lookup ante cualquier "¿qué hago si X?"
+- `[[amrap-tree]]` · resultado AMRAP fuera de target
+- `[[sleep-debt-protocol]]` · días con sueño deficitario
+- `[[daily-morning-check]]` · primera pregunta: "¿qué morning check?"
+- `[[plan-abc-knee]]` · dolor/molestia rodilla durante calentamiento
+- `[[exercise-substitution-matrix]]` · dolor/molestia otras articulaciones o equipo no disponible
+- `[[rpe-scale]]` · clarificación de cómo identificar RPE
+- `[[pre-session-mental-prep]]` · "¿qué hago antes de empezar?"
+- `[[bracing-valsalva]]` · "¿cómo respiro en sentadilla pesada?"
+- `[[support-gear-protocol]]` · "¿uso cinturón hoy?"
+- `[[warmup-calculator]]` · "¿cuántas warm-up sets?"
+- `[[mobility-prehab-by-joint]]` · "¿qué mobility antes?"
+- `[[deload-by-session]]` · "hoy no me apetece" / "me siento raro"
 
 **Eventos especiales**:
-- `test-day-protocol` · día del test
-- `vacation-bw-routine` · durante disrupción
-- `recon-protocols` · vuelta de disrupción
-- `disruption-adaptation-framework` · planificación de disrupción futura
+- `[[test-day-protocol]]` · día del test
+- `[[peak-week-tapering]]` · semana antes del test
+- `[[vacation-bw-routine]]` · durante disrupción
+- `[[recon-protocols]]` · vuelta de disrupción
+- `[[disruption-adaptation-framework]]` · planificación de disrupción futura
 
-**Apoyo motivacional**:
-- `micro-celebraciones` · cuando aplique reconocer un win
-- `coaching-principles` · justificar el "por qué" del plan ante dudas del usuario
+**Apoyo motivacional + mental**:
+- `[[micro-celebraciones]]` · cuando aplique reconocer un win
+- `[[coaching-principles]]` · justificar el "por qué" del plan ante dudas
+- `[[mental-game-plateau]]` · dudas, desánimo, "no me convence"
+- `[[multi-macro-roadmap]]` · "¿qué hago tras este macro?"
+
+**Tracking**:
+- `[[body-composition-tracking]]` · "¿estoy progresando?"

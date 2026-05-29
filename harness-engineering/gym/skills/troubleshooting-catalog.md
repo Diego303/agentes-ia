@@ -5,6 +5,8 @@ description: Invoke when a training plan (or coach in real time) needs to answer
 
 # Troubleshooting Catalog · 25+ escenarios comunes con respuesta accionable
 
+> **Nota · skill 100% general aplicable a cualquier humano.** Los rangos numéricos (días, horas, %) son umbrales programáticos universales. Los nombres de lifts y plantillas son ejemplos · adapta a tu programa.
+
 ## Principio
 
 Cada decisión tomada al momento por el ejecutor en mitad de una disrupción es una decisión arbitraria. Cada decisión pre-tomada por el coach y documentada es ejecución sin fricción.

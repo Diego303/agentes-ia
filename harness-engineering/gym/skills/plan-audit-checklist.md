@@ -181,7 +181,7 @@ Fix: unificar a "sem 17 reajustada" en todas las referencias
 ### Error 4 · % test ambiguos para múltiples lifts
 
 Síntoma: "Intento 1 · 95 % target" aplicado a bench (87,5/92,5 = 94,6 % ≈ 95% ✓) y sentadilla (110/125 = 88 % ≠ 95 %)
-Fix: separar por lift o renombrar como "apertura/intermedio/target"
+Fix: separar por lift Y aplicar la "regla universal" definida en `[[test-day-protocol]]` (apertura = max(PR previo, 95% target) · intermedio = punto medio · target = del macro)
 
 ### Error 5 · reps incorrectas en RECON
 

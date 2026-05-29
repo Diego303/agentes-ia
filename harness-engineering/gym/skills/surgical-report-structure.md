@@ -5,6 +5,8 @@ description: Invoke when building the HTML structure of a surgical longitudinal 
 
 # Surgical Report Structure · estructura obligatoria del entregable
 
+> **Nota · skill 100% general aplicable a cualquier informe quirúrgico longitudinal.** Los rangos (24 secciones, 15-20 hallazgos, 25-30 figuras, 80-150 KB) son targets editoriales universales.
+
 ## Propósito
 
 Define la estructura HTML del informe quirúrgico longitudinal. Un único archivo HTML self-contained, ~80-150 KB, con ~20-25 secciones, ~25-30 figuras embebidas (.png en carpeta paralela), ~10-15 tablas, y ~15-20 cards de hallazgos.

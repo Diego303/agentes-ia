@@ -91,6 +91,68 @@ Por sem 6, ambos usuarios trabajan con 1RM nuevo similar (~85-89), aunque hayan 
 
 La doble columna evita esa "ruleta inicial". El usuario elige según el test diagnóstico y el AMRAP de sem 1 confirma.
 
+## Caso general · cualquier par de 1RMs (no solo 80/85)
+
+La doble columna funciona para cualquier par (1RM_referencia_alta, 1RM_referencia_baja). La fórmula del multiplicador:
+
+```
+multiplicador = 1RM_baja / 1RM_alta
+peso_columna_baja[sem] = round_a_2.5( peso_columna_alta[sem] × multiplicador )
+```
+
+### Pares estándar comunes
+
+| Par (alta, baja) | Multiplicador | Cuándo aplica |
+|---|---|---|
+| 100, 95 | 0,9500 | -5% (incertidumbre menor) |
+| 100, 90 | 0,9000 | -10% (incertidumbre moderada) |
+| 100, 85 | 0,8500 | -15% (post-bucle largo) |
+| 85, 80 | 0,9412 | perfil de referencia · -6% |
+| 140, 130 | 0,9286 | lifter avanzado |
+| 50, 45 | 0,9000 | lifter ligero / mujer intermedia · -10% |
+
+### Ejemplo · lifter de 60 kg corporal con 1RM bench 50 kg ± 5
+
+```
+1RM alta asumida: 50 kg
+1RM baja asumida: 45 kg
+multiplicador = 45 / 50 = 0,9000
+
+Sem 1 col 50: 3×5 @ 37,5 + AMRAP    (37,5 = round_2.5(50 × 0,76))
+Sem 1 col 45: 3×5 @ 35 + AMRAP      (35 = round_2.5(45 × 0,76))
+                                     (peso = peso_col_50 × 0,90)
+```
+
+### Script Python · generar tu tabla
+
+```python
+def col_baja(peso_alta, ratio):
+    return round(peso_alta * ratio / 2.5) * 2.5
+
+# Configura tus dos 1RMs y la tabla %1RM del bloque
+RM_alta = 85      # cambia a tu 1RM alta asumida
+RM_baja = 80      # cambia a tu 1RM baja asumida
+ratio = RM_baja / RM_alta
+
+tabla_porcentajes = {
+    1: (76, 68),   # sem: (%lun, %vie)
+    2: (79, 71),
+    3: (82, 74),
+    4: (85, 76),
+    # ... etc según tu plan
+}
+
+print(f"Multiplicador: {ratio:.4f}")
+for sem, (pct_lun, pct_vie) in tabla_porcentajes.items():
+    lun_alta = round(RM_alta * pct_lun / 100 / 2.5) * 2.5
+    vie_alta = round(RM_alta * pct_vie / 100 / 2.5) * 2.5
+    lun_baja = col_baja(lun_alta, ratio)
+    vie_baja = col_baja(vie_alta, ratio)
+    print(f"Sem {sem}: LUN {lun_alta}/{lun_baja} kg · VIE {vie_alta}/{vie_baja} kg")
+```
+
+Esto reemplaza la decisión manual de columna por una **regla operativa universal** aplicable a cualquier perfil.
+
 ## Notación en el manual
 
 En la tabla del manual editorial:

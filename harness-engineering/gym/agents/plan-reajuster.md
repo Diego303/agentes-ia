@@ -124,6 +124,8 @@ Si el usuario tiene un manual operativo HTML:
 
 ## Casos típicos resueltos en esta sesión
 
+> **Nota · ejemplos basados en perfil de referencia.** Los casos abajo (Vac 1 14d, Vac 2 7d, 12 días entre, sem 8/9/12 del perfil) son ilustrativos. La metodología del agente es **completamente general** — adapta los días, semanas, fechas a tu macro real. Las reglas de decisión (clasificación de pausa, RECON requerido, shift del calendar) son invariantes.
+
 ### Caso 1 · Vacaciones de 14 días + 7 días (con 12 días entre ambas)
 
 - Vac 1 (14 días): perdiste 6 sesiones (sem 8 incompleta + sem 9 RECAL + sem 10 lun)

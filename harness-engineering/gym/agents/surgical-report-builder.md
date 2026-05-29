@@ -272,5 +272,7 @@ La pregunta NO es retórica. Es un trigger para auto-auditarte.
 - `editorial-html-template` · CSS, paleta, componentes editoriales (base técnica)
 
 **Si el dataset es gym (sinergia con análisis programático)**:
-- `telegram-template-library` · estructura de las plantillas (útil para parsear texto crudo)
-- `coaching-principles` · marco interpretativo (para distinguir bug del plan vs ejecución mala)
+- `[[telegram-template-library]]` · estructura de las plantillas (útil para parsear texto crudo)
+- `[[coaching-principles]]` · marco interpretativo (para distinguir bug del plan vs ejecución mala)
+- `[[multi-macro-roadmap]]` · informes anuales basados en re-test corporal completo
+- `[[volume-landmarks-mev-mav-mrv]]` · interpretar cerca de MRV vs MEV en el dataset

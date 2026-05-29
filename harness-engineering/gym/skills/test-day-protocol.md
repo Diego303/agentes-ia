@@ -1,6 +1,6 @@
 ---
 name: test-day-protocol
-description: Invoke when designing or executing test day for 1RM (sem 16 typical). Pre-test 24h, morning of, minute-by-minute gym protocol (3 attempts: 95→98→100 % target), caffeine re-sensibilización, carb load, test fallido rule (PR previo se mantiene), and rules for accepting/not accepting result.
+description: Invoke when designing or executing test day for 1RM (sem 16 typical). Pre-test 24h, morning of, minute-by-minute gym protocol (3 intents: opener/intermediate/target with absolute weights per lift), caffeine re-sensibilización, carb load, test fallido rule (PR previo se mantiene), and rules for accepting/not accepting result. Apertura honesta NO es siempre 95% del target — depende del PR histórico de cada lift.
 ---
 
 # Test Day Protocol · día del test exacto · 1RM
@@ -57,7 +57,7 @@ description: Invoke when designing or executing test day for 1RM (sem 16 typical
   - Plátano + 1 cda miel + puñado frutos secos
   - Carbo de absorción intermedia
 - **Cafeína 60 min pre-test** (19:00):
-  - 5-6 mg/kg (400-480 mg para 80 kg) · DOBLE de tu dosis normal (re-sensibilización)
+  - 6 mg/kg corporal (480 mg para 80 kg) · exactamente DOBLE de la dosis diaria de 3 mg/kg · aprovecha la re-sensibilización de la semana taper
   - Aceptas que esa noche dormirás peor
 - **Mentalidad**: confiado pero respetuoso del peso. Has tocado el 95 % en sem 12-13 limpio.
 
@@ -65,12 +65,12 @@ description: Invoke when designing or executing test day for 1RM (sem 16 typical
 
 | Día | Cafeína |
 |---|---|
-| Sem 14 (último pico) | Normal 240-320 mg pre-entreno |
+| Sem 14 (último pico) | Dosis estándar 3 mg/kg (≈240 mg para 80 kg) |
 | Sem 15 día 1-5 | **100-150 mg/día máximo** (medio espresso doble o 1 café filtrado) |
 | Domingo víspera test bench | **CERO cafeína** todo el día |
-| Lunes test bench (19:00 pre-test) | **5-6 mg/kg** (400-480 mg) · doble de dosis normal |
+| Lunes test bench (19:00 pre-test) | **6 mg/kg** (≈480 mg para 80 kg) · doble exacto de la dosis estándar |
 | Martes - jueves entre tests | **CERO cafeína** (prepara test sentadilla) |
-| Viernes test sentadilla (19:00 pre-test) | **5-6 mg/kg** (mismo protocolo lunes) |
+| Viernes test sentadilla (19:00 pre-test) | **6 mg/kg** (mismo protocolo lunes) |
 
 **Por qué**: la cafeína desarrolla tolerancia. Bajar 5-7 días + cero un día → la dosis del test pega como cuando empezaste a tomarla. +10-15 % de fuerza/output documentado en estudios.
 
@@ -101,25 +101,54 @@ Para test squat (target 125 kg):
 - 105 × 1
 - 115 × 1
 
-### 25-40 min · Intento 1 · apertura · 95 % del target
+### 25-40 min · Intento 1 · APERTURA HONESTA
 
-- Bench: 87,5 kg (95 % del target 92,5)
-- Squat: 110 kg (88 % del target 125 · iguala PR histórico)
-- Single limpio · si sale fácil: 5 min descanso · si cuesta: 10 min
+> **Regla universal**: la apertura NO es siempre 95% del target. Es el **mayor** de estos tres valores:
+> 1. **PR histórico del lift** (el peso que ya has movido limpio antes)
+> 2. **95% del target del macro** (si target conservador)
+> 3. **Último warm-up cómodo** del día (raramente)
+>
+> Esta regla evita el bug de "intento 1 a 95% del target cuando el PR histórico es más bajo y aún no lo has tocado".
 
-### 40-50 min · Intento 2 · intermedio · 97-98 %
+**Ejemplos del perfil de referencia** (adapta a tus números):
+- Bench · target 92,5 · PR previo 85 · apertura = **87,5 kg** (95% del target porque > PR previo)
+- Squat · target 125 · PR previo 110 · apertura = **110 kg** (iguala PR previo · es el techo conocido)
+- Hip Thrust · target 130×8 · PR previo 120×8 · apertura = **120×8** o **125×8** según sensación
 
-- Bench: 90 kg (97 % del target)
-- Squat: 120 kg (96 % del target)
-- Single · aquí ya sabes si el día es bueno
-- 7-10 min descanso
+Single limpio · si sale fácil 5 min descanso · si cuesta 10 min.
 
-### 50-60 min · Intento 3 · target · 100 %
+### 40-50 min · Intento 2 · INTERMEDIO
 
-- Bench: 92,5 kg (100 % target)
-- Squat: 125 kg (100 % target)
-- Single · si limpio: target cumplido · PARAS AQUÍ · NO pruebas 95
-- "Acuéstate con el éxito"
+> **Regla universal**: punto medio entre apertura e intento 3, redondeado a 2,5 kg.
+> **Fórmula**: intento_2 = round_a_2.5( (apertura + target) / 2 )
+
+**Ejemplos del perfil de referencia**:
+- Bench: (87,5 + 92,5) / 2 = 90 kg
+- Squat: (110 + 125) / 2 = 117,5 kg (redondeo 120 si te sientes bien, 115 si dudas)
+- Hip Thrust: (120 + 130) / 2 = 125 kg
+
+Single · aquí ya sabes si el día es bueno · 7-10 min descanso.
+
+### 50-60 min · Intento 3 · TARGET DEL MACRO
+
+> **Regla universal**: el target del macro tal cual. Sin ajustes.
+
+**Ejemplos del perfil de referencia**:
+- Bench: 92,5 kg
+- Squat: 125 kg
+- Hip Thrust: 130×8
+
+Single · si limpio: target cumplido · PARAS AQUÍ · NO pruebas 95% extra · "Acuéstate con el éxito".
+
+### Tabla compacta de los 3 intentos · cualquier lift
+
+| Intento | Regla | Cálculo |
+|---|---|---|
+| 1 · apertura | mayor de (PR previo, 95% target) | techo conocido + margen |
+| 2 · intermedio | punto medio | (apertura + target) / 2 redondeado a 2,5 |
+| 3 · target | target del macro | sin ajuste |
+
+Si el target del macro coincide con el PR previo (no hay mejora ambiciosa): los 3 intentos son 90% / 95% / 100% del PR previo.
 
 ### 60-75 min · cool-down + foto + registro
 

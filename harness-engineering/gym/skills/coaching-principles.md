@@ -73,7 +73,9 @@ Para usuarios intermedios+ natural (3+ años entrenando), estos 10 principios so
 
 ### Principio 7 · Lifts compuestos primero · accesorios después
 
-**Enunciado**: en cualquier sesión, los lifts compuestos pesados (bench, squat, hip thrust, prensa, dominada) van PRIMERO. Accesorios de aislamiento van DESPUÉS.
+**Enunciado**: en cualquier sesión, los lifts compuestos pesados (bench, squat, peso muerto, hip thrust, prensa, dominada) van PRIMERO. Accesorios de aislamiento van DESPUÉS.
+
+> **Nota sobre peso muerto**: es opcional pero recomendado para cualquier programa de fuerza/hipertrofia balanceado. Si por restricción no puedes hacer convencional, considera trap bar (más amigable lumbar) o RDL (Rumanian deadlift · cubre 60-70% del estímulo). Ver `[[lift-technique-reference]]` §peso muerto y `[[exercise-substitution-matrix]]` §lumbar.
 
 **Por qué**: los compuestos requieren coordinación neural máxima y son los principales drivers de progreso. Si se hacen agotados, técnica se rompe.
 

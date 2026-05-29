@@ -149,6 +149,34 @@ Con BW maintenance (rutina de vacaciones · ver `vacation-bw-routine`):
 - 21 días: -4 a -7 %
 - 28+ días: -8 a -12 %
 
+## Creatina · re-saturación tras pausa larga
+
+Si pausaste creatina (>14 días sin tomar · típico viaje largo, vacaciones playa sin querer cargar suplementos):
+
+- **Días 1-5 post-pausa**: 10 g/día divididos en 2 tomas (5g + 5g)
+- **Día 6+**: vuelve a la dosis estándar 5 g/día
+- **NO es fase de carga estándar 20g** · es re-saturación tras vaciado parcial
+- **Si solo pausaste 1-7 días**: tu nivel intramuscular sigue alto · vuelve directo a 5 g/día sin re-saturar
+
+### Por qué importa
+
+La creatina intramuscular tarda ~4 semanas en bajar al baseline pre-suplementación. Si pausaste:
+- 1 sem: nivel cae ~10% · re-saturas en 3-4 días con 5 g/día normal
+- 2-3 sem: nivel cae ~30% · re-saturas en 5-7 días con 10 g/día
+- 4+ sem: nivel casi vacío · re-saturación completa (10 g/día × 5 días)
+
+### Aplicación
+
+En RECON-1 post-pausa larga (15-21 días):
+- Sesiones técnicas (R1a): empezar re-saturación creatina día 1
+- Sesiones ramp (R1b): nivel ya alto · efecto ergogénico presente
+
+En vacaciones planificadas:
+- Llevar contigo si posible (es polvo, fácil de transportar)
+- Si NO posible · planifica re-saturación al volver
+
+Ver `[[nutrition-complete]]` para suplementación general.
+
 ## Cuándo NO necesitas RECON
 
 - Pausa < 5 días con BW maintenance: sesión de regreso al -5 % es suficiente

@@ -178,9 +178,17 @@ for n,f,e in fechas:
 
 ## Skills que invoca
 
-- `surgical-4-pass-methodology` (metodología 4-pase con ultrathink loop · obligatorio)
-- `epley-formula` para verificar cálculos 1RM
-- `bench-dual-column` para verificar ratio 0,9412
-- `calendar-arithmetic` para fechas
-- `amrap-tree` para verificar consistencia de árbol
-- `plan-audit-checklist` para no olvidar items
+**Metodología (obligatorio)**:
+- `[[surgical-4-pass-methodology]]` · metodología 4-pase con ultrathink loop
+
+**Cálculos**:
+- `[[epley-formula]]` para verificar cálculos 1RM
+- `[[bench-dual-column]]` para verificar ratio doble columna
+- `[[calendar-arithmetic]]` para fechas
+- `[[amrap-tree]]` para verificar consistencia de árbol
+
+**Checklists**:
+- `[[plan-audit-checklist]]` para no olvidar items
+
+**Hermano · meta-auditoría del harness**:
+- `[[harness-self-audit]]` · cuando lo que se audita ES el propio harness, no un plan externo

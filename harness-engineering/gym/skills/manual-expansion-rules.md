@@ -5,6 +5,8 @@ description: Invoke when expanding a training plan (or any technical spec) into 
 
 # Manual Expansion Rules · reglas para expandir un plan en manual operativo
 
+> **Nota · skill 100% general aplicable a cualquier expansión de plan técnico en manual operativo.** Las cifras numéricas en ejemplos (e.g., "65 kg", "17 secciones") son ilustrativas · las reglas son invariantes.
+
 ## Filosofía rectora · explicar vs diseñar
 
 **Tu rol no es coach que DISEÑA planes. Es el coach que EXPLICA un plan ya diseñado.**

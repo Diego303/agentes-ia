@@ -5,6 +5,8 @@ description: Invoke when a known disruption (vacation, scheduled surgery, patern
 
 # Disruption Adaptation Framework · metodología general para adaptar planes a disrupciones
 
+> **Nota · skill 100% general aplicable a cualquier humano · cualquier macro · cualquier disrupción de duración.** Los rangos (5-7 días, 8-14, 15-21) son umbrales programáticos universales · no del perfil de referencia.
+
 ## Propósito
 
 Una disrupción conocida (vacaciones planificadas, cirugía agendada, paternidad esperada, viaje laboral largo) NO es una crisis si se planifica con antelación. Este skill define el meta-protocolo para reorganizar un macro de N semanas alrededor de una o varias disrupciones.

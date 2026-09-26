@@ -1,0 +1,27 @@
+# Registro de agentes del harness.
+# El frontmatter de cada .md es la fuente de verdad de model, effort, tools y description
+# (Claude Code lo lee de ahi). Aqui solo se declara el papel de cada agente en el flujo.
+# Especialistas opcionales: role specialist + insertion (pre-gate1 | post-implementation |
+# post-verification) + triggers_on_tags. Ver .claude/docs/extending.md.
+version: 2
+agents:
+  - name: explorer
+    file: .claude/agents/explorer.md
+    role: canonical
+    phase: exploration
+    writes: [SDD/context.md]
+  - name: designer
+    file: .claude/agents/designer.md
+    role: canonical
+    phase: design
+    writes: [SDD/proposal.md, SDD/requirements.md, SDD/design.md, SDD/tasks.md, SDD/acceptance.yaml]
+  - name: builder
+    file: .claude/agents/builder.md
+    role: canonical
+    phase: implementation
+    writes: [codigo del producto, implementation.md]
+  - name: reviewer
+    file: .claude/agents/reviewer.md
+    role: canonical
+    phase: verification
+    writes: [verification.md, verification-result.yaml, repair-request.yaml, archive.md]

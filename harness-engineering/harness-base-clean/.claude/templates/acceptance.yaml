@@ -1,0 +1,32 @@
+# Criterios de aceptacion ejecutables (esquema v1). Guia: skill acceptance-criteria.
+# Inmutable desde GATE#1 (spec.lock.json); la evidencia va a acceptance-results.json.
+# kind: command (comando no interactivo, exit code) | file (existe/no existe + regex)
+#       | inspection (procedimiento humano/IA con evidencia; lo resuelve el reviewer).
+# Entrecomilla los valores que contengan ": " o " #".
+version: 1
+feature_id: FEATURE-001
+checks:
+  - id: AC-001
+    title: La regresion del proyecto sigue pasando
+    covers: [NFR-01]
+    kind: command
+    required: true
+    command: bash .claude/bootstrap/verify.sh
+    cwd: .
+    timeout_seconds: 600
+    expected_exit_code: 0
+  - id: AC-002
+    title: El modulo expone la funcion nueva
+    covers: [FR-01]
+    kind: file
+    required: true
+    path: src/modulo.py
+    expected: exists
+    contains: "def nueva_funcion\\("
+  - id: AC-003
+    title: El mensaje de error indica el campo invalido
+    covers: [FR-02]
+    kind: inspection
+    required: false
+    procedure: Ejecuta el comando con una entrada invalida y lee el mensaje de error.
+    expected: El mensaje nombra el campo invalido y como corregirlo.

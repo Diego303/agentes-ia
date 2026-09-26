@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Claude Code: configuracion local y datos que no se versionan
+.claude/settings.local.json
+.claude/state/hook-errors.log
+.claude/skills/*-workspace/
+
+# Temporales
+tmp*/

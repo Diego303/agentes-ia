@@ -1,0 +1,31 @@
+# Esquema de state.yaml. feature.py lo copia al iniciar una feature y es su unico escritor.
+# phase: ver contracts/workflow.toml. status: in_progress | blocked | archived | cancelled.
+# attempts.build = 1 + repair + human_retries desde la aprobacion de GATE#1.
+# base_commit/base_dirty: foto de git al aprobar GATE#1 (el reviewer compara contra ella).
+version: 1
+feature_id: null
+title: null
+status: in_progress
+phase: intake
+phase_entered_at: null
+created_at: null
+updated_at: null
+attempts:
+  build: 0
+  verification: 0
+  repair: 0
+  human_retries: 0
+gate1:
+  status: pending
+  decided_by: null
+  decided_at: null
+  response: null
+  rationale: null
+last_verdict: null
+blocked_reason: null
+base_commit: null
+base_dirty: []
+lock:
+  active: false
+  since: null
+next_action: null

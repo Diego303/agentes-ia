@@ -1,0 +1,158 @@
+# Maquina de estados canonica del harness (flujo simple).
+# Fuente de verdad para feature.py (aplica las transiciones) y validate_harness.py
+# (valida invariantes). Cada guard es una funcion de .claude/tools/validate_harness.py.
+# Si cambias este archivo, ejecuta el validador y sus tests.
+version = 1
+
+[workflow]
+phases = [
+  "intake",
+  "exploration",
+  "design",
+  "gate1_pending",
+  "implementation",
+  "verification",
+  "blocked",
+  "archived",
+  "cancelled",
+]
+terminal_phases = ["archived", "cancelled"]
+# Fases en las que el flujo espera una decision humana (lock liberado).
+human_wait_phases = ["gate1_pending", "blocked"]
+# Repairs automaticos permitidos tras la primera verificacion. Mas vueltas = decision humana.
+max_repair_attempts = 1
+
+[verdicts]
+pass = "PASS"
+repairable = "FAIL_REPAIRABLE"
+nonrepairable = "FAIL_NONREPAIRABLE"
+tooling_blocked = "BLOCKED_TOOLING"
+
+# Subagente canonico que trabaja en cada fase (se lanza como subagente real).
+[phase_agents]
+exploration = "explorer"
+design = "designer"
+implementation = "builder"
+verification = "reviewer"
+
+[[transitions]]
+from = "intake"
+event = "start_exploration"
+to = "exploration"
+actor = "orchestrator"
+guards = ["feature_registered", "within_budget"]
+
+[[transitions]]
+from = "exploration"
+event = "exploration_complete"
+to = "design"
+actor = "orchestrator"
+guards = ["explorer_runtime_recorded", "context_present", "within_budget"]
+
+[[transitions]]
+from = "design"
+event = "design_complete"
+to = "gate1_pending"
+actor = "orchestrator"
+guards = ["designer_runtime_recorded", "context_present", "sdd_valid"]
+
+# GATE#1. Solo el humano; delegable en yolo-mode salvo tags de human_gate_tags.
+[[transitions]]
+from = "gate1_pending"
+event = "approved"
+to = "implementation"
+actor = "human"
+guards = ["decision_recorded", "approver_authorized", "sdd_valid", "spec_as_presented", "within_budget"]
+
+[[transitions]]
+from = "gate1_pending"
+event = "changes_requested"
+to = "design"
+actor = "human"
+guards = ["decision_recorded", "within_budget"]
+
+[[transitions]]
+from = "implementation"
+event = "build_complete"
+to = "verification"
+actor = "orchestrator"
+guards = ["builder_runtime_recorded", "implementation_report_present", "spec_unchanged", "within_budget"]
+
+[[transitions]]
+from = "verification"
+event = "pass"
+to = "archived"
+actor = "orchestrator"
+guards = [
+  "reviewer_runtime_recorded",
+  "verdict_pass",
+  "required_checks_passed",
+  "archive_present",
+  "spec_unchanged",
+]
+
+# Unico repair automatico: fallo reproducible, dentro de scope, sin cambiar spec.
+[[transitions]]
+from = "verification"
+event = "repairable_failure"
+to = "implementation"
+actor = "orchestrator"
+guards = [
+  "reviewer_runtime_recorded",
+  "verdict_fail_repairable",
+  "repair_budget_available",
+  "repair_request_valid",
+  "spec_unchanged",
+  "within_budget",
+]
+
+[[transitions]]
+from = "verification"
+event = "human_required"
+to = "blocked"
+actor = "orchestrator"
+guards = ["reviewer_runtime_recorded", "verdict_requires_human", "reason_recorded"]
+
+# Un agente informa de un bloqueo, falla un guard que no se puede resolver o se agota el presupuesto.
+[[transitions]]
+from = ["exploration", "design", "implementation", "verification"]
+event = "escalate"
+to = "blocked"
+actor = "orchestrator"
+guards = ["reason_recorded"]
+
+# Salidas de blocked: siempre decision humana explicita.
+[[transitions]]
+from = "blocked"
+event = "retry_exploration"
+to = "exploration"
+actor = "human"
+guards = ["decision_recorded", "within_budget"]
+
+[[transitions]]
+from = "blocked"
+event = "replan"
+to = "design"
+actor = "human"
+guards = ["decision_recorded", "context_present", "within_budget"]
+
+[[transitions]]
+from = "blocked"
+event = "retry_build"
+to = "implementation"
+actor = "human"
+guards = ["decision_recorded", "gate1_was_approved", "spec_unchanged", "within_budget"]
+
+[[transitions]]
+from = "blocked"
+event = "retry_verification"
+to = "verification"
+actor = "human"
+guards = ["decision_recorded", "gate1_was_approved", "implementation_report_present", "spec_unchanged", "within_budget"]
+
+[[transitions]]
+from = ["intake", "exploration", "design", "gate1_pending", "implementation", "verification", "blocked"]
+event = "cancel"
+to = "cancelled"
+actor = "human"
+guards = ["decision_recorded"]

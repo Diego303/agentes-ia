@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ops-mcp
+  namespace: opsagent
+  labels: {app.kubernetes.io/name: ops-mcp, app.kubernetes.io/part-of: opsagent}
+spec:
+  replicas: 2
+  selector:
+    matchLabels: {app.kubernetes.io/name: ops-mcp}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/name: ops-mcp, app.kubernetes.io/part-of: opsagent}
+    spec:
+      serviceAccountName: ops-mcp
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: ops-mcp
+          # Mismo nombre en local (kind carga la imagen) y en AKS (la descarga del ACR).
+          image: acropsagentdev.azurecr.io/ops-mcp:0.1.0
+          imagePullPolicy: IfNotPresent
+          command: ["ops-mcp"]
+          ports: [{name: http, containerPort: 8000}]
+          env:
+            - {name: MCP_RESOURCE_URL, value: "http://ops-mcp:8000/mcp"}
+            - name: MCP_ISSUER_URL  # emisor de los tokens (el IdP del entorno)
+              valueFrom: {configMapKeyRef: {name: opsagent-entorno, key: MCP_ISSUER_URL}}
+            - {name: MCP_ALLOWED_HOSTS, value: "ops-mcp:*,ops-mcp.opsagent.svc:*,ops-mcp.opsagent.svc.cluster.local:*"}
+            - {name: OTEL_EXPORTER_OTLP_ENDPOINT, value: "http://otel-collector:4318"}
+          envFrom:
+            # MCP_TOKENS (tokens estáticos) o MCP_JWKS_URL (JWT del IdP).
+            - secretRef: {name: ops-mcp-secrets}
+          readinessProbe:
+            httpGet: {path: /healthz, port: http}
+          livenessProbe:
+            httpGet: {path: /healthz, port: http}
+            initialDelaySeconds: 10
+          resources:
+            requests: {cpu: 100m, memory: 192Mi}
+            limits: {memory: 384Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: {drop: [ALL]}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ops-mcp
+  namespace: opsagent
+spec:
+  selector: {app.kubernetes.io/name: ops-mcp}
+  ports: [{name: http, port: 8000, targetPort: http}]
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ops-mcp
+  namespace: opsagent
+spec:
+  scaleTargetRef: {apiVersion: apps/v1, kind: Deployment, name: ops-mcp}
+  minReplicas: 2
+  maxReplicas: 6
+  metrics:
+    - type: Resource
+      resource: {name: cpu, target: {type: Utilization, averageUtilization: 70}}
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: ops-mcp
+  namespace: opsagent
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels: {app.kubernetes.io/name: ops-mcp}

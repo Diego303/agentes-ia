@@ -1,0 +1,35 @@
+# Benchmark de recuperación sobre los runbooks de ops-mcp.
+# Cada consulta está parafraseada a propósito (no copia el título del runbook) y `relevant`
+# lista los runbooks que una persona de guardia consideraría correctos.
+- query: el servicio de pagos devuelve muchos 503 desde el último despliegue
+  relevant: [high-error-rate, db-connection-pool, deployment-rollback]
+- query: cómo vuelvo a la versión anterior de un servicio
+  relevant: [deployment-rollback]
+- query: las peticiones tardan más de un segundo en responder
+  relevant: [high-latency]
+- query: TimeoutError could not acquire connection en los logs
+  relevant: [db-connection-pool]
+- query: el consumer group de pedidos va con mucho retraso
+  relevant: [kafka-consumer-lag]
+- query: mensajes que fallan una y otra vez bloquean la partición
+  relevant: [kafka-consumer-lag]
+- query: el certificado del endpoint público caduca la semana que viene
+  relevant: [certificate-expiry]
+- query: error de handshake TLS en los clientes
+  relevant: [certificate-expiry]
+- query: los pods se reinician en bucle nada más arrancar
+  relevant: [pod-crashloop]
+- query: contenedor OOMKilled
+  relevant: [pod-crashloop]
+- query: qué severidad le pongo a una caída total del login
+  relevant: [incident-severity]
+- query: se pueden desplegar funcionalidades nuevas durante un SEV2
+  relevant: [incident-severity]
+- query: quién tiene que aprobar un rollback de un servicio tier 0
+  relevant: [deployment-rollback]
+- query: la migración de base de datos no es retrocompatible, puedo hacer rollback
+  relevant: [deployment-rollback]
+- query: fallos en cascada en checkout porque falla una dependencia
+  relevant: [high-error-rate]
+- query: CPU throttling y pool de conexiones al máximo
+  relevant: [high-latency, db-connection-pool]

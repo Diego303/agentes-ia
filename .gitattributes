@@ -1,0 +1,7 @@
+# Normaliza finales de línea: el repositorio guarda LF y los checkouts usan LF
+# (scripts de shell, YAML y Python fallan con CRLF dentro de contenedores y CI).
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.ico binary

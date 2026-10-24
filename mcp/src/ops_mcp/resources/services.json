@@ -1,0 +1,55 @@
+{
+  "observed_at": "2026-10-24T09:40:00Z",
+  "services": {
+    "payments-api": {
+      "tier": 0,
+      "owner": "team-payments",
+      "status": "degraded",
+      "error_rate_pct": 7.8,
+      "latency_p95_ms": 1850,
+      "requests_per_min": 4200,
+      "replicas": {"ready": 6, "desired": 6},
+      "notes": "Errores 503 desde las 09:17Z; coinciden con el despliegue v2.14.0."
+    },
+    "checkout-web": {
+      "tier": 1,
+      "owner": "team-checkout",
+      "status": "degraded",
+      "error_rate_pct": 2.1,
+      "latency_p95_ms": 920,
+      "requests_per_min": 6100,
+      "replicas": {"ready": 8, "desired": 8},
+      "notes": "Los errores proceden de las llamadas a payments-api."
+    },
+    "orders-worker": {
+      "tier": 1,
+      "owner": "team-orders",
+      "status": "degraded",
+      "error_rate_pct": 0.3,
+      "latency_p95_ms": 210,
+      "requests_per_min": 900,
+      "replicas": {"ready": 3, "desired": 4},
+      "notes": "Lag del consumidor Kafka en el topic orders.created: 48.000 mensajes y creciendo."
+    },
+    "auth-service": {
+      "tier": 0,
+      "owner": "team-identity",
+      "status": "healthy",
+      "error_rate_pct": 0.05,
+      "latency_p95_ms": 85,
+      "requests_per_min": 9800,
+      "replicas": {"ready": 6, "desired": 6},
+      "notes": "Certificado TLS del endpoint público caduca el 2026-11-02."
+    },
+    "search-api": {
+      "tier": 2,
+      "owner": "team-discovery",
+      "status": "healthy",
+      "error_rate_pct": 0.2,
+      "latency_p95_ms": 340,
+      "requests_per_min": 2500,
+      "replicas": {"ready": 4, "desired": 4},
+      "notes": ""
+    }
+  }
+}

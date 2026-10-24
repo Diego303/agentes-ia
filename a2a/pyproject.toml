@@ -1,0 +1,21 @@
+[project]
+name = "change-advisor"
+version = "0.1.0"
+description = "Agente A2A que evalúa cambios en producción contra la política de cambios."
+requires-python = ">=3.12"
+dependencies = [
+    "a2a-sdk[http-server]>=1.2.3,<2",
+    "httpx>=0.28",
+    "uvicorn>=0.54",
+    "opsagent-telemetry",
+]
+
+[project.scripts]
+change-advisor = "change_advisor.server:main"
+
+[tool.uv.sources]
+opsagent-telemetry = { workspace = true }
+
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"

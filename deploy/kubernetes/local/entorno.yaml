@@ -1,0 +1,7 @@
+# Valores que cambian entre entornos. En Azure los genera Terraform (output kubernetes_azure).
+apiVersion: v1
+kind: ConfigMap
+metadata: {name: opsagent-entorno, namespace: opsagent}
+data:
+  OTEL_TRACES_BACKEND: "http://jaeger:4318"
+  MCP_ISSUER_URL: "https://login.example.com"  # con tokens estáticos solo se publica en los metadatos OAuth

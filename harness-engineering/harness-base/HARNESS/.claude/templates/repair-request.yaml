@@ -1,0 +1,12 @@
+# Peticion del unico repair automatico. La escribe el reviewer solo con FAIL_REPAIRABLE.
+# build_attempt = build actual + 1. allowed_scope: archivos/zonas que el builder puede tocar.
+version: 1
+feature_id: FEATURE-001
+build_attempt: 2
+source_verification_attempt: 1
+failing_checks: []
+blocking_issues: []
+failure_summary: null
+reproduction: null
+allowed_scope: []
+acceptance_must_remain_unchanged: true

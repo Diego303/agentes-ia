@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: change-advisor
+  namespace: opsagent
+  labels: {app.kubernetes.io/name: change-advisor, app.kubernetes.io/part-of: opsagent}
+spec:
+  replicas: 2
+  selector:
+    matchLabels: {app.kubernetes.io/name: change-advisor}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/name: change-advisor, app.kubernetes.io/part-of: opsagent}
+    spec:
+      serviceAccountName: change-advisor
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: change-advisor
+          # Mismo nombre en local (kind carga la imagen) y en AKS (la descarga del ACR).
+          image: acropsagentdev.azurecr.io/change-advisor:0.1.0
+          imagePullPolicy: IfNotPresent
+          command: ["change-advisor"]
+          ports: [{name: http, containerPort: 9000}]
+          env:
+            - {name: A2A_PUBLIC_URL, value: "http://change-advisor:9000/"}
+            - {name: OTEL_EXPORTER_OTLP_ENDPOINT, value: "http://otel-collector:4318"}
+          envFrom:
+            - secretRef: {name: change-advisor-secrets}  # A2A_TOKENS
+          readinessProbe:
+            httpGet: {path: /healthz, port: http}
+          livenessProbe:
+            httpGet: {path: /healthz, port: http}
+            initialDelaySeconds: 10
+          resources:
+            requests: {cpu: 50m, memory: 128Mi}
+            limits: {memory: 256Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: {drop: [ALL]}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: change-advisor
+  namespace: opsagent
+spec:
+  selector: {app.kubernetes.io/name: change-advisor}
+  ports: [{name: http, port: 9000, targetPort: http}]

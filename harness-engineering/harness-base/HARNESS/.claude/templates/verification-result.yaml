@@ -1,0 +1,22 @@
+# Veredicto estructurado. Lo escribe el reviewer; feature.py lo usa como guard.
+# build_attempt y verification_attempt deben coincidir con attempts de state.yaml.
+# repairability: true significa "se cumple la condicion para un repair automatico":
+#   design_unchanged / acceptance_unchanged = el arreglo NO exige cambiar design.md / acceptance.yaml.
+version: 1
+feature_id: FEATURE-001
+build_attempt: 1
+verification_attempt: 1
+verdict: PENDING
+acceptance_run_at: null
+inspections: []
+review:
+  blocking_issues: []
+  non_blocking_issues: []
+repairability:
+  reproducible: false
+  in_approved_scope: false
+  design_unchanged: false
+  acceptance_unchanged: false
+  no_irreversible_side_effect: false
+failure_summary: null
+next_action: null

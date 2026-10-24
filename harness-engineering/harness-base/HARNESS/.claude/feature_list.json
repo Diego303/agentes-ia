@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "features": [
+    {
+      "id": "SAMPLE-001",
+      "title": "Tu primera feature: describe aquí el objetivo",
+      "priority": 1,
+      "tags": [],
+      "status": "proposed",
+      "notes": "Ejemplo. Sustitúyela o regístra las tuyas con: python3 .claude/tools/feature.py add ID \"título\""
+    }
+  ]
+}

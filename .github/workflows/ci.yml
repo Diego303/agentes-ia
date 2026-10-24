@@ -1,0 +1,93 @@
+name: ci
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      live_evals:
+        description: "Ejecutar las evals con el modelo real (cuesta dinero)"
+        type: boolean
+        default: false
+  schedule:
+    - cron: "0 6 * * 1"  # evals en vivo cada lunes
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    name: tests, lint y benchmarks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.3.0
+      - run: uv sync --locked
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run pytest -q
+      - name: Benchmarks offline (recuperación y detección de inyección) con umbrales
+        run: uv run opsagent-bench --check --json bench.json
+      - uses: actions/upload-artifact@v7.0.2
+        with: {name: benchmarks, path: bench.json}
+
+  harness:
+    name: ${{ matrix.bundle }} (Python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.10", "3.12"]
+        bundle: [harness-base, harness-base-olas]
+    defaults:
+      run:
+        working-directory: harness-engineering/${{ matrix.bundle }}/HARNESS
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with: {python-version: "${{ matrix.python }}"}
+      - if: matrix.python == '3.10'
+        run: python -m pip install tomli  # Python < 3.11 no trae tomllib
+      - run: python .claude/tools/validate_harness.py
+      - run: python -m unittest discover -s .claude/tests -q
+
+  harness-drift:
+    name: núcleo idéntico en los dos harnesses
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - run: make harness-drift
+
+  infra:
+    name: kubernetes y terraform
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: hashicorp/setup-terraform@v4.0.1
+        with: {terraform_version: "1.17.0", terraform_wrapper: false}  # sin wrapper: la salida de console va limpia
+      - name: kubeconform
+        run: |
+          curl -sSfL https://github.com/yannh/kubeconform/releases/download/v0.8.0/kubeconform-linux-amd64.tar.gz \
+            | tar xz -C /usr/local/bin kubeconform
+      - run: make tf-validate
+      - run: make validate-k8s   # manifiestos planos y render de la plantilla de Azure
+
+  live-evals:
+    name: evals con el modelo real
+    if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.live_evals)
+    needs: [python]
+    runs-on: ubuntu-latest
+    environment: evals  # protege el secreto con aprobación del environment
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: astral-sh/setup-uv@v10.3.0
+      - run: uv sync --locked
+      - name: Calibración del juez (kappa mínimo 0,6)
+        run: uv run opsagent-evals --calibrate
+      - name: Evals de punta a punta (aprobado si pass rate >= 0,8)
+        run: uv run opsagent-evals --judge --repeat 2 --min-pass 0.8 --output evals.json
+      - if: always()
+        uses: actions/upload-artifact@v7.0.2
+        with: {name: evals, path: evals.json}

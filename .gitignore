@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+dist/
+build/
+.coverage
+htmlcov/
+
+# Secretos locales (las plantillas *.example sí se versionan)
+*.env
+!*.env.example
+
+# Terraform
+deploy/terraform/**/.terraform/
+deploy/terraform/**/*.tfstate*
+deploy/terraform/**/*.tfvars
+!deploy/terraform/**/*.tfvars.example
+deploy/terraform/**/.terraform.lock.hcl.bak
+
+# Informes de evals
+evals-and-benchmarks/reports/
+
+# Material de trabajo local que no se publica
+TMP/
+
+# Editor y sistema operativo
+.DS_Store
+*.swp
+*~
+.idea/
+.vscode/

@@ -1,0 +1,24 @@
+[project]
+name = "opsagent-evals"
+version = "0.1.0"
+description = "Evals del agente (trayectoria, hechos, seguridad, LLM-as-judge calibrado) y benchmarks offline."
+requires-python = ">=3.12"
+dependencies = [
+    "pyyaml>=6.0",
+    "opsagent",
+    "opsagent-guardrails",
+    "opsagent-rag",
+]
+
+[project.scripts]
+opsagent-bench = "opsagent_evals.benchmarks:main"
+opsagent-evals = "opsagent_evals.agent_evals:main"
+
+[tool.uv.sources]
+opsagent = { workspace = true }
+opsagent-guardrails = { workspace = true }
+opsagent-rag = { workspace = true }
+
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"

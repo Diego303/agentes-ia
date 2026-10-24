@@ -1,0 +1,10 @@
+[project]
+name = "opsagent-rag"
+version = "0.1.0"
+description = "Recuperación (BM25 + embeddings opcionales con RRF) y memoria de sesión."
+requires-python = ">=3.12"
+dependencies = ["httpx>=0.28"]
+
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"

@@ -1,0 +1,10 @@
+[project]
+name = "opsagent-guardrails"
+version = "0.1.0"
+description = "Guardrails deterministas: detección de prompt injection, spotlighting, política de tools y redacción."
+requires-python = ">=3.12"
+dependencies = []
+
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"

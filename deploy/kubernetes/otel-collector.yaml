@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otel-collector
+  namespace: opsagent
+  labels: {app.kubernetes.io/name: otel-collector, app.kubernetes.io/part-of: opsagent}
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app.kubernetes.io/name: otel-collector}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/name: otel-collector, app.kubernetes.io/part-of: opsagent}
+    spec:
+      serviceAccountName: otel-collector
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: collector
+          image: otel/opentelemetry-collector-contrib:0.163.2
+          args: ["--config=/conf/config.yaml"]
+          ports:
+            - {name: otlp-http, containerPort: 4318}
+            - {name: metrics, containerPort: 8889}
+          env:
+            # Backend de trazas OTLP/HTTP de cada entorno (Jaeger en local).
+            - name: OTEL_TRACES_BACKEND
+              valueFrom: {configMapKeyRef: {name: opsagent-entorno, key: OTEL_TRACES_BACKEND}}
+          volumeMounts:
+            - {name: config, mountPath: /conf, readOnly: true}
+          readinessProbe:
+            httpGet: {path: /, port: 13133}
+          livenessProbe:
+            httpGet: {path: /, port: 13133}
+          resources:
+            requests: {cpu: 50m, memory: 128Mi}
+            limits: {memory: 512Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: {drop: [ALL]}
+      volumes:
+        - name: config
+          configMap: {name: otel-collector-config}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: otel-collector
+  namespace: opsagent
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8889"
+spec:
+  selector: {app.kubernetes.io/name: otel-collector}
+  ports:
+    - {name: otlp-http, port: 4318, targetPort: otlp-http}
+    - {name: metrics, port: 8889, targetPort: metrics}

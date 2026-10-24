@@ -1,0 +1,108 @@
+# Denegar todo por defecto y abrir solo los flujos del diagrama de arquitectura.
+# Un agente comprometido por prompt injection no puede llamar a nada que no esté aquí.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: default-deny, namespace: opsagent}
+spec:
+  podSelector: {}
+  policyTypes: [Ingress, Egress]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: allow-dns, namespace: opsagent}
+spec:
+  podSelector: {}
+  policyTypes: [Egress]
+  egress:
+    - to:
+        - namespaceSelector: {matchLabels: {kubernetes.io/metadata.name: kube-system}}
+          podSelector: {matchLabels: {k8s-app: kube-dns}}
+      ports: [{port: 53, protocol: UDP}, {port: 53, protocol: TCP}]
+---
+# Todos los workloads envían telemetría al collector.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: allow-telemetry, namespace: opsagent}
+spec:
+  podSelector: {matchLabels: {app.kubernetes.io/part-of: opsagent}}
+  policyTypes: [Egress]
+  egress:
+    - to: [{podSelector: {matchLabels: {app.kubernetes.io/name: otel-collector}}}]
+      ports: [{port: 4318}]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: otel-collector, namespace: opsagent}
+spec:
+  podSelector: {matchLabels: {app.kubernetes.io/name: otel-collector}}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from: [{podSelector: {matchLabels: {app.kubernetes.io/part-of: opsagent}}}]
+      ports: [{port: 4318}]
+    - from: [{namespaceSelector: {matchLabels: {opsagent.io/monitoring: "true"}}}]  # Prometheus
+      ports: [{port: 8889}]
+  egress:
+    - to: [{podSelector: {matchLabels: {app.kubernetes.io/name: jaeger}}}]
+      ports: [{port: 4318}]
+    - to: [{ipBlock: {cidr: 0.0.0.0/0, except: [10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16]}}]
+      ports: [{port: 443}]
+---
+# El agente solo habla con el gateway, el servidor MCP y el change advisor.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: ops-agent, namespace: opsagent}
+spec:
+  podSelector: {matchLabels: {app.kubernetes.io/name: ops-agent}}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - podSelector: {matchLabels: {opsagent.io/client: "true"}}
+        - namespaceSelector: {matchLabels: {opsagent.io/client: "true"}}
+      ports: [{port: 8080}]
+  egress:
+    - to: [{podSelector: {matchLabels: {app.kubernetes.io/name: llm-gateway}}}]
+      ports: [{port: 4000}]
+    - to: [{podSelector: {matchLabels: {app.kubernetes.io/name: ops-mcp}}}]
+      ports: [{port: 8000}]
+    - to: [{podSelector: {matchLabels: {app.kubernetes.io/name: change-advisor}}}]
+      ports: [{port: 9000}]
+---
+# Solo el gateway sale a Internet (API del proveedor de modelos), y solo por 443.
+# Con Cilium, sustitúyelo por una CiliumNetworkPolicy con toFQDNs: api.anthropic.com.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: llm-gateway, namespace: opsagent}
+spec:
+  podSelector: {matchLabels: {app.kubernetes.io/name: llm-gateway}}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - podSelector: {matchLabels: {app.kubernetes.io/name: ops-agent}}
+        - podSelector: {matchLabels: {app.kubernetes.io/name: ops-mcp}}  # embeddings para RAG híbrido
+      ports: [{port: 4000}]
+  egress:
+    - to: [{ipBlock: {cidr: 0.0.0.0/0, except: [10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16]}}]
+      ports: [{port: 443}]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: ops-mcp, namespace: opsagent}
+spec:
+  podSelector: {matchLabels: {app.kubernetes.io/name: ops-mcp}}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from: [{podSelector: {matchLabels: {app.kubernetes.io/name: ops-agent}}}]
+      ports: [{port: 8000}]
+  egress:
+    - to: [{podSelector: {matchLabels: {app.kubernetes.io/name: llm-gateway}}}]
+      ports: [{port: 4000}]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: {name: change-advisor, namespace: opsagent}
+spec:
+  podSelector: {matchLabels: {app.kubernetes.io/name: change-advisor}}
+  policyTypes: [Ingress]
+  ingress:
+    - from: [{podSelector: {matchLabels: {app.kubernetes.io/name: ops-agent}}}]
+      ports: [{port: 9000}]

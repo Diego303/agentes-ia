@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ops-agent
+  namespace: opsagent
+  labels: {app.kubernetes.io/name: ops-agent, app.kubernetes.io/part-of: opsagent}
+spec:
+  # Una réplica: las sesiones viven en memoria (InMemorySessionStore). Para escalar, un
+  # SessionStore externo (Redis/PostgreSQL); ver architecture/adr/0006.
+  replicas: 1
+  strategy: {type: Recreate}
+  selector:
+    matchLabels: {app.kubernetes.io/name: ops-agent}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/name: ops-agent, app.kubernetes.io/part-of: opsagent}
+    spec:
+      serviceAccountName: ops-agent
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 10001
+        runAsGroup: 10001
+        seccompProfile: {type: RuntimeDefault}
+      containers:
+        - name: ops-agent
+          # Mismo nombre en local (kind carga la imagen) y en AKS (la descarga del ACR).
+          image: acropsagentdev.azurecr.io/ops-agent:0.1.0
+          imagePullPolicy: IfNotPresent
+          command: ["opsagent-api"]
+          ports: [{name: http, containerPort: 8080}]
+          env:
+            - {name: OPSAGENT_MODEL, value: "claude-opus-5-5"}
+            - {name: OPSAGENT_EFFORT, value: "medium"}
+            - {name: LLM_GATEWAY_URL, value: "http://llm-gateway:4000"}
+            - {name: MCP_URL, value: "http://ops-mcp:8000/mcp"}
+            - {name: ADVISOR_URL, value: "http://change-advisor:9000/"}
+            - {name: OTEL_EXPORTER_OTLP_ENDPOINT, value: "http://otel-collector:4318"}
+          envFrom:
+            # LLM_GATEWAY_KEY, MCP_TOKEN, ADVISOR_TOKEN, AGENT_API_TOKENS.
+            - secretRef: {name: ops-agent-secrets}
+          readinessProbe:
+            httpGet: {path: /healthz, port: http}
+          livenessProbe:
+            httpGet: {path: /healthz, port: http}
+            initialDelaySeconds: 10
+          resources:
+            requests: {cpu: 100m, memory: 256Mi}
+            limits: {memory: 512Mi}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: {drop: [ALL]}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ops-agent
+  namespace: opsagent
+spec:
+  selector: {app.kubernetes.io/name: ops-agent}
+  ports: [{name: http, port: 8080, targetPort: http}]

@@ -1,0 +1,31 @@
+[project]
+name = "opsagent"
+version = "0.1.0"
+description = "Agente de referencia (ops-assistant): bucle de tool use con Claude vía gateway, MCP, A2A, guardrails y OTel."
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=2.3,<3",
+    "mcp>=2.3,<3",
+    "starlette>=1.10",
+    "uvicorn>=0.54",
+    "change-advisor",
+    "ops-mcp",
+    "opsagent-guardrails",
+    "opsagent-rag",
+    "opsagent-telemetry",
+]
+
+[project.scripts]
+opsagent = "opsagent.cli:main"
+opsagent-api = "opsagent.api:main"
+
+[tool.uv.sources]
+change-advisor = { workspace = true }
+ops-mcp = { workspace = true }
+opsagent-guardrails = { workspace = true }
+opsagent-rag = { workspace = true }
+opsagent-telemetry = { workspace = true }
+
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"

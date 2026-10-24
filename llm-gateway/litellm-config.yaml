@@ -1,0 +1,49 @@
+# Configuración de LiteLLM proxy: gateway LLM del sistema de referencia
+# (imagen ghcr.io/berriai/litellm-non_root:v1.106.3; en Kubernetes, ConfigMap llm-gateway-config).
+# La aplicación usa el SDK de Anthropic contra el endpoint /v1/messages de este gateway; aquí se
+# centralizan claves de proveedor, reintentos, fallbacks, presupuesto y trazas.
+# Los nombres de modelo son los IDs oficiales: la app no necesita alias que traducir.
+
+model_list:
+  - model_name: claude-opus-5-5
+    litellm_params:
+      model: anthropic/claude-opus-5-5
+      api_key: os.environ/ANTHROPIC_API_KEY
+      api_base: os.environ/ANTHROPIC_API_BASE
+  - model_name: claude-sonnet-5-5
+    litellm_params:
+      model: anthropic/claude-sonnet-5-5
+      api_key: os.environ/ANTHROPIC_API_KEY
+      api_base: os.environ/ANTHROPIC_API_BASE
+  - model_name: claude-haiku-5-5
+    litellm_params:
+      model: anthropic/claude-haiku-5-5
+      api_key: os.environ/ANTHROPIC_API_KEY
+      api_base: os.environ/ANTHROPIC_API_BASE
+  # Embeddings para la recuperación híbrida (opcional). Anthropic no ofrece embeddings: se
+  # enruta a Voyage AI y la aplicación solo conoce el alias "embeddings".
+  - model_name: embeddings
+    litellm_params:
+      model: voyage/voyage-4
+      api_key: os.environ/VOYAGE_API_KEY
+
+router_settings:
+  num_retries: 2            # reintenta 429/5xx con backoff antes de recurrir al fallback
+  timeout: 120
+  allowed_fails: 3          # fallos por minuto antes de enfriar un despliegue
+  cooldown_time: 30
+  # Si Opus no está disponible (caída, cuota), degrada a Sonnet en lugar de fallar.
+  fallbacks:
+    - claude-opus-5-5: [claude-sonnet-5-5]
+
+litellm_settings:
+  request_timeout: 120
+  drop_params: false        # nunca descartar parámetros en silencio (thinking, output_config...)
+  callbacks: ["otel"]       # spans del gateway enlazados con la traza del agente (traceparent)
+  # Tope de gasto global en memoria por réplica: red de seguridad, no contabilidad. Para
+  # presupuestos por clave, equipo o agente, activa la base de datos de LiteLLM (virtual keys).
+  max_budget: 50
+  budget_duration: 1d
+
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY

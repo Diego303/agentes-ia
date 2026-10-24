@@ -1,0 +1,68 @@
+# Espacio de trabajo uv del sistema de referencia (ops-assistant).
+# Cada carpeta temática es un paquete; las imágenes instalan solo el suyo.
+[project]
+name = "agentes-ia"
+version = "0.1.0"
+description = "Sistema de referencia de un agente de IA de punta a punta: MCP, A2A, gateway, guardrails, OTel, evals y despliegue en Kubernetes."
+requires-python = ">=3.12"
+license = "Apache-2.0"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "opsagent",
+    "opsagent-evals",
+    "pytest>=9.1",
+    "pytest-asyncio>=1.4",
+    "ruff>=0.17",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.workspace]
+members = [
+    "observability",
+    "guardrails-security",
+    "rag-and-memory",
+    "mcp",
+    "a2a",
+    "reference-agent",
+    "evals-and-benchmarks",
+]
+
+[tool.uv.sources]
+opsagent = { workspace = true }
+opsagent-evals = { workspace = true }
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = [
+    "observability/tests",
+    "guardrails-security/tests",
+    "rag-and-memory/tests",
+    "mcp/tests",
+    "a2a/tests",
+    "reference-agent/tests",
+    "evals-and-benchmarks/tests",
+]
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+extend-exclude = ["harness-engineering"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "ASYNC", "RUF"]
+ignore = ["RUF001", "RUF002", "RUF003"]  # textos en español con tildes y comillas tipográficas
+
+[tool.ruff.lint.isort]
+known-first-party = [
+    "agent_fixtures", "change_advisor", "ops_mcp", "opsagent", "opsagent_evals",
+    "opsagent_guardrails", "opsagent_rag", "opsagent_telemetry",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/**" = ["S101", "S105", "S106", "S107"]
+"guardrails-security/src/opsagent_guardrails/injection.py" = ["E501"]  # regex legibles en una línea

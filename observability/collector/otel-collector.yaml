@@ -1,0 +1,46 @@
+# OpenTelemetry Collector (imagen otel/opentelemetry-collector-contrib:0.163.2).
+# Los servicios envían OTLP/HTTP aquí; el collector decide a qué backend va cada señal.
+receivers:
+  otlp:
+    protocols:
+      http:
+        endpoint: 0.0.0.0:4318
+
+processors:
+  memory_limiter:
+    check_interval: 1s
+    limit_percentage: 80
+    spike_limit_percentage: 20
+  # Gobierno del dato: aunque un servicio active por error el modo "content" del SDK, los
+  # prompts y respuestas no salen del clúster.
+  attributes/no-content:
+    actions:
+      - {key: gen_ai.input.messages, action: delete}
+      - {key: gen_ai.output.messages, action: delete}
+      - {key: gen_ai.system_instructions, action: delete}
+  batch: {}
+
+exporters:
+  # Trazas: cualquier backend OTLP (Jaeger en local; Tempo, Datadog, Honeycomb... en el overlay).
+  otlphttp/traces:
+    endpoint: ${env:OTEL_TRACES_BACKEND}
+  # Métricas: endpoint Prometheus estándar para que lo rasque el Prometheus del clúster.
+  prometheus:
+    endpoint: 0.0.0.0:8889
+    namespace: agentes_ia
+
+extensions:
+  health_check:
+    endpoint: 0.0.0.0:13133
+
+service:
+  extensions: [health_check]
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [memory_limiter, attributes/no-content, batch]
+      exporters: [otlphttp/traces]
+    metrics:
+      receivers: [otlp]
+      processors: [memory_limiter, batch]
+      exporters: [prometheus]
